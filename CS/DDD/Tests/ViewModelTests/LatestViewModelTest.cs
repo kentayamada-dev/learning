@@ -12,7 +12,7 @@ public class LatestViewModelTest
   [TestMethod]
   public void Scenario()
   {
-    WeatherEntity Entity = new("35004", "2018-08-10 11:10:10".ToDateTime(), 12.341f, "SUNNNY");
+    WeatherEntity Entity = new("35004", "2018-08-10 11:10:10".ToDateTime(), 12.341f, "SUNNY");
     Mock<IWeatherRepository> Mock = new();
     _ = Mock.Setup(x => x.GetLatest()).Returns(Entity);
     LatestViewModel Model = new(Mock.Object);
