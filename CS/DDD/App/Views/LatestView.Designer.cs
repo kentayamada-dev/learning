@@ -135,7 +135,7 @@
       MaximizeBox = false;
       Name = "LatestView";
       StartPosition = FormStartPosition.CenterScreen;
-      Text = "LatestView";
+      Text = "Latest";
       ResumeLayout(false);
       PerformLayout();
     }
