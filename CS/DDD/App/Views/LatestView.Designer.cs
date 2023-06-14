@@ -42,7 +42,7 @@
       // label1
       // 
       label1.AutoSize = true;
-      label1.Location = new Point(64, 32);
+      label1.Location = new Point(64, 54);
       label1.Name = "label1";
       label1.Size = new Size(111, 32);
       label1.TabIndex = 0;
@@ -51,7 +51,7 @@
       // label2
       // 
       label2.AutoSize = true;
-      label2.Location = new Point(64, 119);
+      label2.Location = new Point(64, 141);
       label2.Name = "label2";
       label2.Size = new Size(177, 32);
       label2.TabIndex = 1;
@@ -60,7 +60,7 @@
       // label3
       // 
       label3.AutoSize = true;
-      label3.Location = new Point(64, 206);
+      label3.Location = new Point(64, 228);
       label3.Name = "label3";
       label3.Size = new Size(119, 32);
       label3.TabIndex = 2;
@@ -69,7 +69,7 @@
       // label4
       // 
       label4.AutoSize = true;
-      label4.Location = new Point(64, 285);
+      label4.Location = new Point(64, 307);
       label4.Name = "label4";
       label4.Size = new Size(149, 32);
       label4.TabIndex = 3;
@@ -77,7 +77,7 @@
       // 
       // ZipCodeTextBox
       // 
-      ZipCodeTextBox.Location = new Point(374, 24);
+      ZipCodeTextBox.Location = new Point(374, 46);
       ZipCodeTextBox.Name = "ZipCodeTextBox";
       ZipCodeTextBox.ReadOnly = true;
       ZipCodeTextBox.Size = new Size(355, 39);
@@ -85,7 +85,7 @@
       // 
       // MeasuredDateTextBox
       // 
-      MeasuredDateTextBox.Location = new Point(374, 111);
+      MeasuredDateTextBox.Location = new Point(374, 133);
       MeasuredDateTextBox.Name = "MeasuredDateTextBox";
       MeasuredDateTextBox.ReadOnly = true;
       MeasuredDateTextBox.Size = new Size(355, 39);
@@ -93,7 +93,7 @@
       // 
       // ConditionTextBox
       // 
-      ConditionTextBox.Location = new Point(374, 198);
+      ConditionTextBox.Location = new Point(374, 220);
       ConditionTextBox.Name = "ConditionTextBox";
       ConditionTextBox.ReadOnly = true;
       ConditionTextBox.Size = new Size(355, 39);
@@ -101,7 +101,7 @@
       // 
       // TemperatureTextBox
       // 
-      TemperatureTextBox.Location = new Point(374, 285);
+      TemperatureTextBox.Location = new Point(374, 307);
       TemperatureTextBox.Name = "TemperatureTextBox";
       TemperatureTextBox.ReadOnly = true;
       TemperatureTextBox.Size = new Size(355, 39);
@@ -131,7 +131,7 @@
       Controls.Add(label3);
       Controls.Add(label2);
       Controls.Add(label1);
-      DoubleBuffered = true;
+      DoubleBuffered = false;
       MaximizeBox = false;
       Name = "LatestView";
       StartPosition = FormStartPosition.CenterScreen;
