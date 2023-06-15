@@ -6,14 +6,14 @@ namespace App.ViewModels
 {
   public sealed class LatestViewModel : BaseViewModel
   {
-    private readonly IWeatherRepository _weatherRepository;
+    private readonly WeatherRepository _weatherRepository;
 
     public LatestViewModel()
       : this(Factories.CreateWeather()) { }
 
     public LatestViewModel(IWeatherRepository weatherRepository)
     {
-      _weatherRepository = weatherRepository;
+      _weatherRepository = new WeatherRepository(weatherRepository);
     }
 
     private string _zipCode = string.Empty;
@@ -47,10 +47,10 @@ namespace App.ViewModels
     public void Search()
     {
       WeatherEntity _weather = _weatherRepository.GetLatest();
-      ZipCode = _weather.ZipCode;
-      MeasuredDate = _weather.MeasuredDate.ToString("yyyy-MM-dd HH:mm:ss");
-      Temperature = Math.Round(_weather.Temperature, 2).ToString() + "℃";
-      Condition = _weather.Condition == "SUNNY" ? "Sunny" : "Cloudy";
+      ZipCode = _weather.ZipCode.Value;
+      MeasuredDate = _weather.MeasuredDate.DisplayValue;
+      Temperature = _weather.Temperature.DisplayValue;
+      Condition = _weather.Condition.DisplayValue;
     }
   }
 }

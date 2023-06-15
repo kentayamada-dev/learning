@@ -1,18 +1,20 @@
-﻿namespace Domain.Entities
+﻿using Domain.ValueObjects;
+
+namespace Domain.Entities
 {
   public sealed class WeatherEntity
   {
-    public string ZipCode { get; }
-    public DateTime MeasuredDate { get; }
-    public float Temperature { get; }
-    public string Condition { get; }
+    public ZipCode ZipCode { get; }
+    public MeasuredDate MeasuredDate { get; }
+    public Temperature Temperature { get; }
+    public Condition Condition { get; }
 
     public WeatherEntity(string zipCode, DateTime measuredDate, float temperature, string condition)
     {
-      ZipCode = zipCode;
-      MeasuredDate = measuredDate;
-      Temperature = temperature;
-      Condition = condition;
+      ZipCode = new ZipCode(zipCode);
+      MeasuredDate = new MeasuredDate(measuredDate);
+      Temperature = new Temperature(temperature);
+      Condition = new Condition(condition);
     }
   }
 }

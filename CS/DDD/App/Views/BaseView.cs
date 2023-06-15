@@ -4,7 +4,7 @@ namespace App.Views
 {
   internal partial class BaseView : Form
   {
-    internal BaseView()
+    private protected BaseView()
     {
       InitializeComponent();
 #if DEBUG
