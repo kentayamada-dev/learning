@@ -32,11 +32,11 @@
       label2 = new Label();
       label3 = new Label();
       label4 = new Label();
-      ZipCodeTextBox = new TextBox();
       MeasuredDateTextBox = new TextBox();
       ConditionTextBox = new TextBox();
       TemperatureTextBox = new TextBox();
       SearchButton = new Button();
+      ZipCodeComboBox = new ComboBox();
       SuspendLayout();
       // 
       // label1
@@ -75,14 +75,6 @@
       label4.TabIndex = 3;
       label4.Text = "Temperature";
       // 
-      // ZipCodeTextBox
-      // 
-      ZipCodeTextBox.Location = new Point(374, 46);
-      ZipCodeTextBox.Name = "ZipCodeTextBox";
-      ZipCodeTextBox.ReadOnly = true;
-      ZipCodeTextBox.Size = new Size(355, 39);
-      ZipCodeTextBox.TabIndex = 4;
-      // 
       // MeasuredDateTextBox
       // 
       MeasuredDateTextBox.Location = new Point(374, 133);
@@ -117,25 +109,41 @@
       SearchButton.UseVisualStyleBackColor = true;
       SearchButton.Click += SearchButton_Click;
       // 
+      // ZipCodeComboBox
+      // 
+      ZipCodeComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+      ZipCodeComboBox.FormattingEnabled = true;
+      ZipCodeComboBox.Location = new Point(374, 54);
+      ZipCodeComboBox.Name = "ZipCodeComboBox";
+      ZipCodeComboBox.Size = new Size(355, 40);
+      ZipCodeComboBox.TabIndex = 9;
+      // 
       // LatestView
       // 
       AutoScaleDimensions = new SizeF(13F, 32F);
       AutoScaleMode = AutoScaleMode.Font;
       ClientSize = new Size(800, 450);
+      Controls.Add(ZipCodeComboBox);
       Controls.Add(SearchButton);
       Controls.Add(TemperatureTextBox);
       Controls.Add(ConditionTextBox);
       Controls.Add(MeasuredDateTextBox);
-      Controls.Add(ZipCodeTextBox);
       Controls.Add(label4);
       Controls.Add(label3);
       Controls.Add(label2);
       Controls.Add(label1);
       DoubleBuffered = false;
-      MaximizeBox = false;
       Name = "LatestView";
-      StartPosition = FormStartPosition.CenterScreen;
       Text = "Latest";
+      Controls.SetChildIndex(label1, 0);
+      Controls.SetChildIndex(label2, 0);
+      Controls.SetChildIndex(label3, 0);
+      Controls.SetChildIndex(label4, 0);
+      Controls.SetChildIndex(MeasuredDateTextBox, 0);
+      Controls.SetChildIndex(ConditionTextBox, 0);
+      Controls.SetChildIndex(TemperatureTextBox, 0);
+      Controls.SetChildIndex(SearchButton, 0);
+      Controls.SetChildIndex(ZipCodeComboBox, 0);
       ResumeLayout(false);
       PerformLayout();
     }
@@ -146,10 +154,10 @@
     private Label label2;
     private Label label3;
     private Label label4;
-    private TextBox ZipCodeTextBox;
     private TextBox MeasuredDateTextBox;
     private TextBox ConditionTextBox;
     private TextBox TemperatureTextBox;
     private Button SearchButton;
+    private ComboBox ZipCodeComboBox;
   }
 }

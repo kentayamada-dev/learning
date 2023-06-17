@@ -9,13 +9,12 @@ namespace Infrastructure
   {
     public static IWeatherRepository CreateWeather()
     {
-#if DEBUG
-      if (Shared.IsFake)
-      {
-        return new WeatherFake();
-      }
-#endif
-      return new WeatherSQLite();
+      return Shared.IsFake ? new WeatherFake() : new WeatherSQLite();
+    }
+
+    public static IAreaRepository CreateArea()
+    {
+      return Shared.IsFake ? new AreaFake() : new AreaSQLite();
     }
   }
 }

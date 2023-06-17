@@ -1,4 +1,5 @@
-using App.Views;
+﻿using App.Views;
+using Domain;
 
 namespace App;
 
@@ -13,6 +14,14 @@ internal static class Program
     // To customize application configuration such as set high DPI settings or default font,
     // see https://aka.ms/applicationconfiguration.
     ApplicationConfiguration.Initialize();
-    Application.Run(new LoginView());
+
+    if (Shared.IsFake || Shared.IsDebugMode)
+    {
+      Application.Run(new InfoView());
+    }
+    else
+    {
+      Application.Run(new LoginView());
+    }
   }
 }

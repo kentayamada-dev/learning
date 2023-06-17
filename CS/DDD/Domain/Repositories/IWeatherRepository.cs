@@ -4,6 +4,6 @@ namespace Domain.Repositories
 {
   public interface IWeatherRepository
   {
-    WeatherEntity GetLatest();
+    WeatherEntity? GetLatest(string zipCode);
   }
 }
