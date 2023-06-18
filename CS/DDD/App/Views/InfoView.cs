@@ -20,8 +20,8 @@ namespace App.Views
 
     private void ProceedButton_Click(object sender, EventArgs e)
     {
-      using LoginView f = new();
-      _ = f.ShowDialog();
+      using LoginView LoginView = new();
+      _ = LoginView.ShowDialog();
     }
 
     private void CloseButton_Click(object sender, EventArgs e)

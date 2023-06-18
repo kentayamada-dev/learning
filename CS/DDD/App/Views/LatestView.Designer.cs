@@ -37,12 +37,15 @@
       TemperatureTextBox = new TextBox();
       SearchButton = new Button();
       ZipCodeComboBox = new ComboBox();
+      EditButton = new Button();
+      ListButton = new Button();
+      CachedSearchCheckBox = new CheckBox();
       SuspendLayout();
       // 
       // label1
       // 
       label1.AutoSize = true;
-      label1.Location = new Point(64, 54);
+      label1.Location = new Point(64, 83);
       label1.Name = "label1";
       label1.Size = new Size(111, 32);
       label1.TabIndex = 0;
@@ -51,7 +54,7 @@
       // label2
       // 
       label2.AutoSize = true;
-      label2.Location = new Point(64, 141);
+      label2.Location = new Point(64, 154);
       label2.Name = "label2";
       label2.Size = new Size(177, 32);
       label2.TabIndex = 1;
@@ -60,7 +63,7 @@
       // label3
       // 
       label3.AutoSize = true;
-      label3.Location = new Point(64, 228);
+      label3.Location = new Point(64, 225);
       label3.Name = "label3";
       label3.Size = new Size(119, 32);
       label3.TabIndex = 2;
@@ -69,7 +72,7 @@
       // label4
       // 
       label4.AutoSize = true;
-      label4.Location = new Point(64, 307);
+      label4.Location = new Point(64, 296);
       label4.Name = "label4";
       label4.Size = new Size(149, 32);
       label4.TabIndex = 3;
@@ -77,7 +80,7 @@
       // 
       // MeasuredDateTextBox
       // 
-      MeasuredDateTextBox.Location = new Point(374, 133);
+      MeasuredDateTextBox.Location = new Point(374, 154);
       MeasuredDateTextBox.Name = "MeasuredDateTextBox";
       MeasuredDateTextBox.ReadOnly = true;
       MeasuredDateTextBox.Size = new Size(355, 39);
@@ -85,7 +88,7 @@
       // 
       // ConditionTextBox
       // 
-      ConditionTextBox.Location = new Point(374, 220);
+      ConditionTextBox.Location = new Point(374, 225);
       ConditionTextBox.Name = "ConditionTextBox";
       ConditionTextBox.ReadOnly = true;
       ConditionTextBox.Size = new Size(355, 39);
@@ -93,7 +96,7 @@
       // 
       // TemperatureTextBox
       // 
-      TemperatureTextBox.Location = new Point(374, 307);
+      TemperatureTextBox.Location = new Point(374, 288);
       TemperatureTextBox.Name = "TemperatureTextBox";
       TemperatureTextBox.ReadOnly = true;
       TemperatureTextBox.Size = new Size(355, 39);
@@ -101,9 +104,9 @@
       // 
       // SearchButton
       // 
-      SearchButton.Location = new Point(64, 363);
+      SearchButton.Location = new Point(64, 353);
       SearchButton.Name = "SearchButton";
-      SearchButton.Size = new Size(665, 75);
+      SearchButton.Size = new Size(401, 75);
       SearchButton.TabIndex = 8;
       SearchButton.Text = "Search";
       SearchButton.UseVisualStyleBackColor = true;
@@ -113,16 +116,51 @@
       // 
       ZipCodeComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
       ZipCodeComboBox.FormattingEnabled = true;
-      ZipCodeComboBox.Location = new Point(374, 54);
+      ZipCodeComboBox.Location = new Point(374, 83);
       ZipCodeComboBox.Name = "ZipCodeComboBox";
       ZipCodeComboBox.Size = new Size(355, 40);
       ZipCodeComboBox.TabIndex = 9;
+      // 
+      // EditButton
+      // 
+      EditButton.Location = new Point(579, 12);
+      EditButton.Name = "EditButton";
+      EditButton.Size = new Size(150, 46);
+      EditButton.TabIndex = 10;
+      EditButton.Text = "Edit";
+      EditButton.UseVisualStyleBackColor = true;
+      EditButton.Click += EditButton_Click;
+      // 
+      // ListButton
+      // 
+      ListButton.Location = new Point(374, 12);
+      ListButton.Name = "ListButton";
+      ListButton.Size = new Size(150, 46);
+      ListButton.TabIndex = 11;
+      ListButton.Text = "List";
+      ListButton.UseVisualStyleBackColor = true;
+      ListButton.Click += ListButton_Click;
+      // 
+      // CachedSearchCheckBox
+      // 
+      CachedSearchCheckBox.AutoSize = true;
+      CachedSearchCheckBox.Checked = true;
+      CachedSearchCheckBox.CheckState = CheckState.Checked;
+      CachedSearchCheckBox.Location = new Point(521, 373);
+      CachedSearchCheckBox.Name = "CachedSearchCheckBox";
+      CachedSearchCheckBox.Size = new Size(203, 36);
+      CachedSearchCheckBox.TabIndex = 12;
+      CachedSearchCheckBox.Text = "Cached Search";
+      CachedSearchCheckBox.UseVisualStyleBackColor = true;
       // 
       // LatestView
       // 
       AutoScaleDimensions = new SizeF(13F, 32F);
       AutoScaleMode = AutoScaleMode.Font;
       ClientSize = new Size(800, 450);
+      Controls.Add(CachedSearchCheckBox);
+      Controls.Add(ListButton);
+      Controls.Add(EditButton);
       Controls.Add(ZipCodeComboBox);
       Controls.Add(SearchButton);
       Controls.Add(TemperatureTextBox);
@@ -144,6 +182,9 @@
       Controls.SetChildIndex(TemperatureTextBox, 0);
       Controls.SetChildIndex(SearchButton, 0);
       Controls.SetChildIndex(ZipCodeComboBox, 0);
+      Controls.SetChildIndex(EditButton, 0);
+      Controls.SetChildIndex(ListButton, 0);
+      Controls.SetChildIndex(CachedSearchCheckBox, 0);
       ResumeLayout(false);
       PerformLayout();
     }
@@ -159,5 +200,8 @@
     private TextBox TemperatureTextBox;
     private Button SearchButton;
     private ComboBox ZipCodeComboBox;
+    private Button EditButton;
+    private Button ListButton;
+    private CheckBox CachedSearchCheckBox;
   }
 }

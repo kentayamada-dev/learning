@@ -10,9 +10,9 @@ namespace Domain
     public static string LoginID { get; set; } = "XXXXXX";
     public static bool IsDebugMode =>
 #if DEBUG
-    true;
+      true;
 #else
-   false;
+      false;
 #endif
   }
 }

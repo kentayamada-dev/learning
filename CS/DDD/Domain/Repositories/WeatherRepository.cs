@@ -11,6 +11,12 @@ namespace Domain.Repositories
       _repository = repositor;
     }
 
+    public void Edit(string zipCode, DateTime measuredDate, float temperature, string condition)
+    {
+      WeatherEntity weather = new(zipCode, measuredDate, temperature, condition);
+      _repository.Edit(weather);
+    }
+
     public WeatherEntity? GetLatest(string zipCode)
     {
       WeatherEntity? val1 = _repository.GetLatest(zipCode);

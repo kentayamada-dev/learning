@@ -12,14 +12,8 @@ namespace Infrastructure.SQLite
       string sql = @"SELECT * FROM Area";
       return SQLiteHelper.Query(
         sql,
-        reader =>
-          new AreaEntity(
-            reader[nameof(AreaEntity.ZipCode)].ToNotNullString(),
-            reader[nameof(AreaEntity.StateAbbr)].ToNotNullString()
-          )
+        reader => new AreaEntity(reader[nameof(AreaEntity.ZipCode)].ToNotNullString(), reader[nameof(AreaEntity.StateAbbr)].ToNotNullString())
       );
     }
   }
 }
-
-

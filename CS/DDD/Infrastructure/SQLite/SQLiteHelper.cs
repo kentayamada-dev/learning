@@ -7,11 +7,7 @@ namespace Infrastructure.SQLite
   {
     private static readonly string _connectionString = @"Data Source=C:\Users\kenta\Desktop\learning\CS\DDD\DB\DDD.db";
 
-    internal static ReadOnlyCollection<T> Query<T>(
-      string sql,
-      Func<SqliteDataReader, T> createEntity,
-      SqliteParameter[]? parameters = null
-    )
+    internal static ReadOnlyCollection<T> Query<T>(string sql, Func<SqliteDataReader, T> createEntity, SqliteParameter[]? parameters = null)
     {
       List<T> result = new();
       using SqliteConnection connection = new(_connectionString);
@@ -30,11 +26,7 @@ namespace Infrastructure.SQLite
       return result.AsReadOnly();
     }
 
-    internal static T? QuerySingle<T>(
-      string sql,
-      Func<SqliteDataReader, T> createEntity,
-      SqliteParameter[]? parameters = null
-    )
+    internal static T? QuerySingle<T>(string sql, Func<SqliteDataReader, T> createEntity, SqliteParameter[]? parameters = null)
     {
       using SqliteConnection connection = new(_connectionString);
       using SqliteCommand command = new(sql, connection);
@@ -65,19 +57,6 @@ namespace Infrastructure.SQLite
         command.CommandText = insert;
         _ = command.ExecuteNonQuery();
       }
-    }
-
-    internal static void Execute(string sql, SqliteParameter[]? parameters = null)
-    {
-      using SqliteConnection connection = new(_connectionString);
-      using SqliteCommand command = new(sql, connection);
-      connection.Open();
-      if (parameters != null)
-      {
-        command.Parameters.AddRange(parameters);
-      }
-
-      _ = command.ExecuteNonQuery();
     }
   }
 }

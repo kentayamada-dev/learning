@@ -1,5 +1,4 @@
 ﻿using App.ViewModels;
-using Domain.Entities;
 
 namespace App.Views
 {
@@ -10,8 +9,8 @@ namespace App.Views
     internal LatestView()
     {
       InitializeComponent();
-      _ = ZipCodeComboBox.ValueMember = nameof(AreaEntity.ZipCode);
-      _ = ZipCodeComboBox.DisplayMember = nameof(AreaEntity.StateAbbr);
+      _ = ZipCodeComboBox.ValueMember = nameof(AreaViewModel.ZipCode);
+      _ = ZipCodeComboBox.DisplayMember = nameof(AreaViewModel.StateAbbr);
       _ = ZipCodeComboBox.DataBindings.Add(nameof(ZipCodeComboBox.SelectedValue), _model, nameof(_model.SelectedZipCode));
       _ = ZipCodeComboBox.DataBindings.Add(nameof(ZipCodeComboBox.DataSource), _model, nameof(_model.Areas));
       _ = MeasuredDateTextBox.DataBindings.Add(nameof(MeasuredDateTextBox.Text), _model, nameof(_model.MeasuredDate));
@@ -23,12 +22,24 @@ namespace App.Views
     {
       try
       {
-        _model.Search();
+        _model.Search(CachedSearchCheckBox.Checked);
       }
       catch (Exception Ex)
       {
         BaseExceptionProc(Ex);
       }
+    }
+
+    private void EditButton_Click(object sender, EventArgs e)
+    {
+      using EditView EditView = new();
+      _ = EditView.ShowDialog();
+    }
+
+    private void ListButton_Click(object sender, EventArgs e)
+    {
+      using ListView ListView = new();
+      _ = ListView.ShowDialog();
     }
   }
 }

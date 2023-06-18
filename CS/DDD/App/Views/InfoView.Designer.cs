@@ -87,7 +87,7 @@
       Controls.Add(DebugModeCheckBox);
       Name = "InfoView";
       StartPosition = FormStartPosition.CenterScreen;
-      Text = "InfoView";
+      Text = "Info";
       ResumeLayout(false);
       PerformLayout();
     }

@@ -12,8 +12,8 @@ namespace App.Views
     private void LoginButton_Click(object sender, EventArgs e)
     {
       Shared.LoginID = LoginIDTextBox.Text;
-      using LatestView f = new();
-      _ = f.ShowDialog();
+      using LatestView LatestView = new();
+      _ = LatestView.ShowDialog();
     }
   }
 }

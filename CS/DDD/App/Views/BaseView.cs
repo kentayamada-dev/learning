@@ -8,6 +8,7 @@ namespace App.Views
   internal partial class BaseView : Form
   {
     private static readonly ILog _logger = LogManager.GetLogger(MethodBase.GetCurrentMethod()!.DeclaringType);
+
     private protected BaseView()
     {
       InitializeComponent();

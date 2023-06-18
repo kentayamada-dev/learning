@@ -14,11 +14,7 @@ namespace Tests.ViewModelTests
     [TestMethod]
     public void Scenario()
     {
-      ReadOnlyCollection<AreaEntity> Areas = new List<AreaEntity>()
-    {
-      new AreaEntity("35004", "AL"),
-      new AreaEntity("20003",  "CA")
-    }.AsReadOnly();
+      ReadOnlyCollection<AreaEntity> Areas = new List<AreaEntity>() { new AreaEntity("35004", "AL"), new AreaEntity("20003", "CA") }.AsReadOnly();
       Mock<IAreaRepository> AreaMock = new();
       _ = AreaMock.Setup(x => x.GetData()).Returns(Areas);
       Mock<IWeatherRepository> WeatherMock = new();
@@ -34,14 +30,14 @@ namespace Tests.ViewModelTests
       Assert.AreEqual("", Model.Temperature);
 
       Model.SelectedZipCode = "35004";
-      Model.Search();
+      Model.Search(false);
       Assert.AreEqual("35004", Model.SelectedZipCode);
       Assert.AreEqual("2018-08-11 11:10:10", Model.MeasuredDate);
       Assert.AreEqual("Sunny", Model.Condition);
       Assert.AreEqual("12.4℃", Model.Temperature);
 
       Model.SelectedZipCode = "20003";
-      DataNotExistsException Ex = Assert.ThrowsException<DataNotExistsException>(Model.Search);
+      DataNotExistsException Ex = Assert.ThrowsException<DataNotExistsException>(() => Model.Search(true));
       Assert.AreEqual("Data Does Not Exists.", Ex.Message);
       Assert.AreEqual("20003", Model.SelectedZipCode);
       Assert.AreEqual("", Model.MeasuredDate);

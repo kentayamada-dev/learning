@@ -1,8 +1,10 @@
 ﻿using System.ComponentModel;
+using App.BackgroundWorkers;
 using Domain.Entities;
 using Domain.Exceptions;
 using Domain.Helpers;
 using Domain.Repositories;
+using Domain.StaticValues;
 using Infrastructure;
 
 namespace App.ViewModels
@@ -55,11 +57,29 @@ namespace App.ViewModels
       set => SetProperty(ref _condition, value);
     }
 
-    public void Search()
+    public void Search(bool isCachedSearch)
     {
       if (_selectedZipCode != "")
       {
-        WeatherEntity? weather = _weather.GetLatest(_selectedZipCode.ToNotNullString());
+        WeatherEntity? weather;
+        if (isCachedSearch)
+        {
+          if (!WeathersCachingWorker.IsWeathersCachingWorkerRunning)
+          {
+            WeathersCachingWorker.Start();
+          }
+
+          weather = Weathers.GetCashedWeathers(_selectedZipCode.ToNotNullString());
+        }
+        else
+        {
+          if (WeathersCachingWorker.IsWeathersCachingWorkerRunning)
+          {
+            WeathersCachingWorker.Stop();
+          }
+
+          weather = _weather.GetLatest(_selectedZipCode.ToNotNullString());
+        }
         if (weather == null)
         {
           MeasuredDate = "";

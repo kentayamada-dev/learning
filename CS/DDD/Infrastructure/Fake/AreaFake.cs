@@ -19,7 +19,8 @@ namespace Infrastructure.Fake
         {
           string[] value = line.Split(",");
           Areas.Add(new AreaEntity(value[0], value[1]));
-        };
+        }
+        ;
 
         return Areas.AsReadOnly();
       }

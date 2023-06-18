@@ -4,7 +4,7 @@ namespace Domain.ValueObjects
 {
   public sealed class Temperature : BaseValueObject
   {
-    private static readonly string _unit = "℃";
+    public static readonly string Unit = "℃";
     private static readonly int _decimalPoint = 1;
 
     public float Value { get; }
@@ -14,7 +14,7 @@ namespace Domain.ValueObjects
       Value = value;
     }
 
-    public string DisplayValue => Value.ToRoundedFloatString(_decimalPoint) + _unit;
+    public string DisplayValue => Value.ToRoundedFloatString(_decimalPoint) + Unit;
 
     private protected override IEnumerable<object> GetEqualityComponents()
     {
