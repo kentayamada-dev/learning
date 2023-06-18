@@ -1,6 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using Domain.Entities;
-using Domain.Helpers;
+using Domain.Modules.Helpers;
 using Domain.Repositories;
 
 namespace Infrastructure.SQLite

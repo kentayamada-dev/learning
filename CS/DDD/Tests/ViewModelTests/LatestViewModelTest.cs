@@ -2,7 +2,7 @@
 using App.ViewModels;
 using Domain.Entities;
 using Domain.Exceptions;
-using Domain.Helpers;
+using Domain.Modules.Helpers;
 using Domain.Repositories;
 using Moq;
 

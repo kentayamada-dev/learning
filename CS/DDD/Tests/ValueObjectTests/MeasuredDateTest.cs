@@ -1,4 +1,4 @@
-﻿using Domain.Helpers;
+﻿using Domain.Modules.Helpers;
 using Domain.ValueObjects;
 
 namespace Tests.ValueObjectTests

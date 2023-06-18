@@ -2,7 +2,7 @@
 using App.BackgroundWorkers;
 using Domain.Entities;
 using Domain.Exceptions;
-using Domain.Helpers;
+using Domain.Modules.Helpers;
 using Domain.Repositories;
 using Domain.StaticValues;
 using Infrastructure;

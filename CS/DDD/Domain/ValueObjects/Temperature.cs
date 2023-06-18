@@ -1,4 +1,4 @@
-﻿using Domain.Helpers;
+﻿using Domain.Modules.Helpers;
 
 namespace Domain.ValueObjects
 {

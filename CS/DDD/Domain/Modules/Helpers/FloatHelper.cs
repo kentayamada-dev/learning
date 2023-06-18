@@ -1,4 +1,4 @@
-﻿namespace Domain.Helpers
+﻿namespace Domain.Modules.Helpers
 {
   public static class FloatHelper
   {
