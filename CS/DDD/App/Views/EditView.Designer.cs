@@ -106,10 +106,14 @@
       // 
       // TemperatureNumericUpDown
       // 
+      TemperatureNumericUpDown.DecimalPlaces = 2;
       TemperatureNumericUpDown.Location = new Point(289, 295);
+      TemperatureNumericUpDown.Minimum = new decimal(new int[] { 100, 0, 0, int.MinValue });
       TemperatureNumericUpDown.Name = "TemperatureNumericUpDown";
+      TemperatureNumericUpDown.RightToLeft = RightToLeft.No;
       TemperatureNumericUpDown.Size = new Size(430, 39);
       TemperatureNumericUpDown.TabIndex = 9;
+      TemperatureNumericUpDown.TextAlign = HorizontalAlignment.Right;
       // 
       // SaveButton
       // 

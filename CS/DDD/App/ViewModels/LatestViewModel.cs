@@ -59,7 +59,11 @@ namespace App.ViewModels
 
     public void Search(bool isCachedSearch)
     {
-      if (_selectedZipCode != "")
+      if (_selectedZipCode == "")
+      {
+        Guard.IsStringEmpty(SelectedZipCode, "Please Select Area.");
+      }
+      else
       {
         WeatherEntity? weather;
         if (isCachedSearch)

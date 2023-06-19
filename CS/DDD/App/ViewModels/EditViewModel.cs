@@ -45,8 +45,6 @@ namespace App.ViewModels
 
     public void Save()
     {
-      //Guard.IsNull(SelectedAreaId, "Please Select Area.");
-      //float temperature = Guard.IsFloat(TemperatureText, "Invalid Temperature.");
       _weather.Edit(SelectedZipCode, MeasuredDate, TemperatureValue, SelectedCondition);
     }
   }
