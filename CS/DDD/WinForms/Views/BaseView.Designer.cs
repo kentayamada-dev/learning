@@ -35,6 +35,8 @@
       AutoScaleDimensions = new SizeF(13F, 32F);
       AutoScaleMode = AutoScaleMode.Font;
       ClientSize = new Size(974, 629);
+      FormBorderStyle = FormBorderStyle.FixedSingle;
+      MaximizeBox = false;
       Name = "BaseView";
       StartPosition = FormStartPosition.CenterScreen;
       Text = "BaseView";
