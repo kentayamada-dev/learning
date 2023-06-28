@@ -2,9 +2,9 @@
 
 namespace WinForms.Views
 {
-  public partial class DebugView : Form
+  internal partial class DebugView : Form
   {
-    public DebugView()
+    internal DebugView()
     {
       InitializeComponent();
       if (Shared.IsFake)
