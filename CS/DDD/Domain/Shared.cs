@@ -10,12 +10,12 @@ namespace Domain
       .Build();
 
     public static string? UserName { get; set; } = null;
-    public static bool IsFake => _configuration["IsFake"] == "True";
     public static bool IsDebugMode =>
 #if DEBUG
       true;
 #else
       false;
 #endif
+    public static bool IsFake => _configuration["IsFake"] == "True" && IsDebugMode;
   }
 }
