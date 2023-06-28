@@ -6,7 +6,7 @@ namespace Domain
   {
     private static readonly IConfiguration _configuration = new ConfigurationBuilder()
       .SetBasePath(Directory.GetCurrentDirectory())
-      .AddJsonFile(path: "appsettings.json", true, true)
+      .AddJsonFile("appsettings.json", true, true)
       .Build();
 
     public static string? UserName { get; set; } = null;
