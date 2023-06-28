@@ -16,25 +16,25 @@ namespace WinForms.Views
       }
     }
 
-    private protected static void BaseExceptionProc(Exception Ex)
+    private protected static void BaseExceptionProc(Exception exception)
     {
       //_logger.Error(Ex.Message, Ex);
       MessageBoxIcon icon = MessageBoxIcon.Error;
       string caption = "Error";
-      if (Ex is CustomException baseException)
+      if (exception is CustomException CustomException)
       {
-        if (baseException.Kind == CustomException.ExceptionKind.Information)
+        if (CustomException.Kind == CustomException.ExceptionKind.Information)
         {
           icon = MessageBoxIcon.Information;
           caption = "Information";
         }
-        else if (baseException.Kind == CustomException.ExceptionKind.Warning)
+        else if (CustomException.Kind == CustomException.ExceptionKind.Warning)
         {
           icon = MessageBoxIcon.Warning;
           caption = "Warning";
         }
       }
-      _ = MessageBox.Show(Ex.Message, caption, MessageBoxButtons.OK, icon);
+      _ = MessageBox.Show(exception.Message, caption, MessageBoxButtons.OK, icon);
     }
   }
 }
