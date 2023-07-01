@@ -6,11 +6,9 @@ using Domain.Repositories;
 
 namespace Infrastructure.Fake
 {
-  internal sealed class UserFake : IUserRepository
+  internal sealed class UserAuthFake : IUserAuthRepository
   {
-    public void Add(string userName, string password) { }
-
-    public UserEntity? GetByName(string userName)
+    private static UserEntity GetFakeUser()
     {
       string fakeUserPath = Shared.FakeUserPath ?? throw new CustomException($"{nameof(Shared.FakeUserPath)} not specified in appsettings.json.", CustomException.ExceptionKind.Error);
       string[] lines = File.ReadAllLines(fakeUserPath);
@@ -24,6 +22,16 @@ namespace Infrastructure.Fake
           );
 
       return user;
+    }
+
+    public UserEntity Signin(string name, string password)
+    {
+      return GetFakeUser();
+    }
+
+    public UserEntity Signup(string name, string password)
+    {
+      return GetFakeUser();
     }
   }
 }

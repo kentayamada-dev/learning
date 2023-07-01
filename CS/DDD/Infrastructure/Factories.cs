@@ -12,9 +12,9 @@ namespace Infrastructure
       return Shared.IsFake ? new WeatherFake() : new WeatherSQLite();
     }
 
-    public static IUserRepository CreateUser()
+    public static IUserAuthRepository CreateUser()
     {
-      return Shared.IsFake ? new UserFake() : new UserSQLite();
+      return Shared.IsFake ? new UserAuthFake() : new UserAuthRepository(new UserSQLite());
     }
   }
 }

@@ -4,7 +4,7 @@
   {
     private static readonly string _format = "yyyy-MM-dd HH:mm:ss";
 
-    internal DateTime Value { get; }
+    public DateTime Value { get; }
 
     internal CustomDateTime(DateTime value)
     {

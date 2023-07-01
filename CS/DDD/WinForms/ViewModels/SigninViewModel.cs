@@ -1,18 +1,20 @@
-﻿using Domain.Repositories;
+﻿using Domain;
+using Domain.Entities;
+using Domain.Repositories;
 using Infrastructure;
 
 namespace WinForms.ViewModels
 {
   internal sealed class SigninViewModel
   {
-    private readonly UserRepository _user;
+    private readonly IUserAuthRepository _user;
 
     internal SigninViewModel()
       : this(Factories.CreateUser()) { }
 
-    internal SigninViewModel(IUserRepository user)
+    internal SigninViewModel(IUserAuthRepository user)
     {
-      _user = new UserRepository(user);
+      _user = user;
       Password = "";
       Name = "";
     }
@@ -22,7 +24,8 @@ namespace WinForms.ViewModels
 
     internal void Signin()
     {
-      _ = _user.Signin(Name, Password);
+      UserEntity user = _user.Signin(Name, Password);
+      Shared.User = new UserEntity(user.ID.Value, user.Name.DisplayValue, user.Password.DisplayValue, user.CreatedAt.Value, user.UpdatedAt.Value);
     }
   }
 }

@@ -12,6 +12,7 @@ namespace Infrastructure.SQLite
     {
       string sql =
         @"SELECT Weather.zipCode, Weather.measuredDate, Weather.condition, Weather.temperature, Area.stateAbbr FROM Weather JOIN Area ON Weather.zipCode = Area.zipCode WHERE Weather.userId = @userId ORDER BY Weather.measuredDate DESC";
+
       return SQLiteCore.Query(
         sql,
         reader =>

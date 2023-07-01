@@ -13,10 +13,12 @@ namespace Infrastructure.SQLite
       using SqliteConnection connection = new(_connectionString);
       using SqliteCommand command = new(sql, connection);
       connection.Open();
+
       if (parameters != null)
       {
         command.Parameters.AddRange(parameters);
       }
+
       using SqliteDataReader reader = command.ExecuteReader();
       while (reader.Read())
       {
@@ -31,15 +33,18 @@ namespace Infrastructure.SQLite
       using SqliteConnection connection = new(_connectionString);
       using SqliteCommand command = new(sql, connection);
       connection.Open();
+
       if (parameters != null)
       {
         command.Parameters.AddRange(parameters);
       }
+
       using SqliteDataReader reader = command.ExecuteReader();
       while (reader.Read())
       {
         return createEntity(reader);
       }
+
       return default;
     }
 
@@ -48,6 +53,7 @@ namespace Infrastructure.SQLite
       using SqliteConnection connection = new(_connectionString);
       using SqliteCommand command = new(sql, connection);
       connection.Open();
+
       if (parameters != null)
       {
         command.Parameters.AddRange(parameters);

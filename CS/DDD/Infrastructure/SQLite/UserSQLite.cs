@@ -10,6 +10,7 @@ namespace Infrastructure.SQLite
     public UserEntity? GetByName(string userName)
     {
       string sql = @"SELECT * FROM User WHERE name = @name";
+
       return SQLiteCore.QuerySingle(
         sql,
         reader =>
