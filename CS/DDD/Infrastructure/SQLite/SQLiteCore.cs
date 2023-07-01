@@ -5,7 +5,7 @@ namespace Infrastructure.SQLite
 {
   internal sealed class SQLiteCore
   {
-    private static readonly string _connectionString = @"Data Source=C:\Users\kenta\Desktop\learning\CS\DDD\DB\DDD.db";
+    private static readonly string _connectionString = "Data Source=DB\\DDD.db";
 
     internal static ReadOnlyCollection<T> Query<T>(string sql, Func<SqliteDataReader, T> createEntity, SqliteParameter[]? parameters = null)
     {
