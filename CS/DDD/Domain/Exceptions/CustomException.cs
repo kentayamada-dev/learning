@@ -11,7 +11,7 @@
 
     public ExceptionKind Kind { get; }
 
-    internal CustomException(string message, ExceptionKind kind, Exception? exception = null)
+    public CustomException(string message, ExceptionKind kind, Exception? exception = null)
       : base(message, exception)
     {
       Kind = kind;
