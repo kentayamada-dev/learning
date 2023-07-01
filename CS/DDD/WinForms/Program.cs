@@ -21,7 +21,7 @@ namespace WinForms
       }
       else
       {
-        Application.Run(new LoginView());
+        Application.Run(new SigninView());
       }
     }
   }

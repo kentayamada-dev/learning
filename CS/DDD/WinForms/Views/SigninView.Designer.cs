@@ -1,6 +1,6 @@
 ﻿namespace WinForms.Views
 {
-  partial class LoginView
+  partial class SigninView
   {
     /// <summary>
     /// Required designer variable.
@@ -32,13 +32,14 @@
       label2 = new Label();
       NameTextBox = new TextBox();
       PasswordTextBox = new TextBox();
-      LoginButton = new Button();
+      SigninButton = new Button();
+      SignupButton = new Button();
       SuspendLayout();
       // 
       // label1
       // 
       label1.AutoSize = true;
-      label1.Location = new Point(207, 125);
+      label1.Location = new Point(108, 144);
       label1.Name = "label1";
       label1.Size = new Size(78, 32);
       label1.TabIndex = 0;
@@ -47,7 +48,7 @@
       // label2
       // 
       label2.AutoSize = true;
-      label2.Location = new Point(207, 301);
+      label2.Location = new Point(108, 261);
       label2.Name = "label2";
       label2.Size = new Size(111, 32);
       label2.TabIndex = 1;
@@ -55,39 +56,57 @@
       // 
       // NameTextBox
       // 
-      NameTextBox.Location = new Point(397, 125);
+      NameTextBox.Location = new Point(334, 144);
       NameTextBox.Name = "NameTextBox";
-      NameTextBox.Size = new Size(320, 39);
+      NameTextBox.Size = new Size(541, 39);
       NameTextBox.TabIndex = 2;
       // 
       // PasswordTextBox
       // 
-      PasswordTextBox.Location = new Point(397, 301);
+      PasswordTextBox.Location = new Point(334, 261);
       PasswordTextBox.Name = "PasswordTextBox";
-      PasswordTextBox.Size = new Size(320, 39);
+      PasswordTextBox.PasswordChar = '*';
+      PasswordTextBox.Size = new Size(541, 39);
       PasswordTextBox.TabIndex = 3;
       // 
-      // LoginButton
+      // SigninButton
       // 
-      LoginButton.Location = new Point(207, 468);
-      LoginButton.Name = "LoginButton";
-      LoginButton.Size = new Size(510, 116);
-      LoginButton.TabIndex = 4;
-      LoginButton.Text = "Login";
-      LoginButton.UseVisualStyleBackColor = true;
-      LoginButton.Click += LoginButton_Click;
+      SigninButton.Location = new Point(108, 381);
+      SigninButton.Name = "SigninButton";
+      SigninButton.Size = new Size(767, 116);
+      SigninButton.TabIndex = 4;
+      SigninButton.Text = "SIGN IN";
+      SigninButton.UseVisualStyleBackColor = true;
+      SigninButton.Click += SigninButton_Click;
       // 
-      // LoginView
+      // SignupButton
+      // 
+      SignupButton.Location = new Point(610, 515);
+      SignupButton.Name = "SignupButton";
+      SignupButton.Size = new Size(265, 45);
+      SignupButton.TabIndex = 5;
+      SignupButton.Text = "Sign Up?";
+      SignupButton.UseVisualStyleBackColor = true;
+      SignupButton.Click += SignupButton_Click;
+      // 
+      // SigninView
       // 
       AutoScaleDimensions = new SizeF(13F, 32F);
-      ClientSize = new Size(974, 629);
-      Controls.Add(LoginButton);
+      ClientSize = new Size(1000, 600);
+      Controls.Add(SignupButton);
+      Controls.Add(SigninButton);
       Controls.Add(PasswordTextBox);
       Controls.Add(NameTextBox);
       Controls.Add(label2);
       Controls.Add(label1);
-      Name = "LoginView";
-      Text = "Login";
+      Name = "SigninView";
+      Text = "Signin";
+      Controls.SetChildIndex(label1, 0);
+      Controls.SetChildIndex(label2, 0);
+      Controls.SetChildIndex(NameTextBox, 0);
+      Controls.SetChildIndex(PasswordTextBox, 0);
+      Controls.SetChildIndex(SigninButton, 0);
+      Controls.SetChildIndex(SignupButton, 0);
       ResumeLayout(false);
       PerformLayout();
     }
@@ -98,6 +117,7 @@
     private Label label2;
     private TextBox NameTextBox;
     private TextBox PasswordTextBox;
-    private Button LoginButton;
+    private Button SigninButton;
+    private Button SignupButton;
   }
 }

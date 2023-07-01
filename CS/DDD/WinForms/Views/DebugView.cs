@@ -20,8 +20,8 @@ namespace WinForms.Views
 
     private void ProceedButton_Click(object sender, EventArgs e)
     {
-      using LoginView LoginView = new();
-      _ = LoginView.ShowDialog();
+      using SigninView SigninView = new();
+      _ = SigninView.ShowDialog();
     }
 
     private void ExitButton_Click(object sender, EventArgs e)

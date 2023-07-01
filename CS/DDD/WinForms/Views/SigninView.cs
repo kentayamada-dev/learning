@@ -2,22 +2,22 @@
 
 namespace WinForms.Views
 {
-  internal partial class LoginView : BaseView
+  internal partial class SigninView : BaseView
   {
-    private readonly LoginViewModel _model = new();
+    private readonly SigninViewModel _model = new();
 
-    internal LoginView()
+    internal SigninView()
     {
       InitializeComponent();
       _ = NameTextBox.DataBindings.Add(nameof(NameTextBox.Text), _model, nameof(_model.Name));
       _ = PasswordTextBox.DataBindings.Add(nameof(PasswordTextBox.Text), _model, nameof(_model.Password));
     }
 
-    private void LoginButton_Click(object sender, EventArgs e)
+    private void SigninButton_Click(object sender, EventArgs e)
     {
       try
       {
-        _model.Auth();
+        _model.Signin();
         using WeatherListView WeatherListView = new();
         _ = WeatherListView.ShowDialog();
       }
@@ -25,6 +25,12 @@ namespace WinForms.Views
       {
         BaseExceptionProc(Exception);
       }
+    }
+
+    private void SignupButton_Click(object sender, EventArgs e)
+    {
+      using SignupView SignupView = new();
+      _ = SignupView.ShowDialog();
     }
   }
 }

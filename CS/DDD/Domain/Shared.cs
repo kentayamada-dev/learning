@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Domain.Entities;
+using Microsoft.Extensions.Configuration;
 
 namespace Domain
 {
@@ -9,7 +10,7 @@ namespace Domain
       .AddJsonFile("appsettings.json", true, true)
       .Build();
 
-    public static string? UserName { get; set; } = null;
+    public static UserEntity? User { get; set; } = null;
     public static bool IsDebugMode =>
 #if DEBUG
       true;

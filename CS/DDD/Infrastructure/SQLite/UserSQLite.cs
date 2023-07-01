@@ -7,7 +7,7 @@ namespace Infrastructure.SQLite
 {
   internal sealed class UserSQLite : IUserRepository
   {
-    public UserEntity? Get(string userName)
+    public UserEntity? GetByName(string userName)
     {
       string sql = @"SELECT * FROM User WHERE name = @name";
       return SQLiteCore.QuerySingle(

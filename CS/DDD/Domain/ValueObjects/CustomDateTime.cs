@@ -11,7 +11,7 @@
       Value = value;
     }
 
-    internal string DisplayValue => Value.ToString(_format);
+    public string DisplayValue => Value.ToString(_format);
 
     private protected override IEnumerable<object> GetEqualityComponents()
     {

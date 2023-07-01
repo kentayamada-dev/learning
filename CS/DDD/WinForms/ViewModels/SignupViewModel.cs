@@ -3,14 +3,14 @@ using Infrastructure;
 
 namespace WinForms.ViewModels
 {
-  internal sealed class LoginViewModel
+  internal sealed class SignupViewModel
   {
     private readonly UserRepository _user;
 
-    internal LoginViewModel()
+    internal SignupViewModel()
       : this(Factories.CreateUser()) { }
 
-    internal LoginViewModel(IUserRepository user)
+    internal SignupViewModel(IUserRepository user)
     {
       _user = new UserRepository(user);
       Password = "";
@@ -20,9 +20,9 @@ namespace WinForms.ViewModels
     public string Password { get; set; }
     public string Name { get; set; }
 
-    internal void Auth()
+    internal void Signup()
     {
-      _ = _user.Login(Name, Password);
+      _ = _user.Signup(Name, Password);
     }
   }
 }

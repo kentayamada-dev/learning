@@ -4,7 +4,7 @@ namespace Domain.Repositories
 {
   public interface IUserRepository
   {
-    UserEntity? Get(string userName);
+    UserEntity? GetByName(string userName);
     void Add(string userName, string password);
   }
 }
