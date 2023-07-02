@@ -15,5 +15,10 @@ namespace WinForms.ViewModels
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
       }
     }
+
+    private protected virtual DateTime GetDateTime()
+    {
+      return DateTime.Now;
+    }
   }
 }

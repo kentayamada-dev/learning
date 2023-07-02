@@ -14,7 +14,7 @@ CREATE TABLE Weather(
   condition	      TEXT        NOT NULL COLLATE BINARY,
   temperature     REAL        NOT NULL,
   userId          INTEGER,
-  PRIMARY KEY(zipCode, measuredDate)
+  PRIMARY KEY(zipCode, measuredDate, userId)
   FOREIGN KEY(zipCode)        REFERENCES Area(zipCode)
   FOREIGN KEY(userId)         REFERENCES User(id)
   CHECK(measuredDate IS DATETIME(measuredDate))

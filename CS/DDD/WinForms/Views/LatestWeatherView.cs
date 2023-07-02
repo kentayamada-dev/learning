@@ -35,5 +35,11 @@ namespace WinForms.Views
       using WeatherListView WeatherListView = new();
       _ = WeatherListView.ShowDialog();
     }
+
+    private void EditButton_Click(object sender, EventArgs e)
+    {
+      using WeatherEditorView WeatherEditorView = new();
+      _ = WeatherEditorView.ShowDialog();
+    }
   }
 }

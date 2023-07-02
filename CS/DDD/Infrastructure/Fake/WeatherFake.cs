@@ -33,5 +33,7 @@ namespace Infrastructure.Fake
 
       return new(value[0].ToNotNullString(), value[1].ToDateTime(), value[2].ToSingle(), value[3].ToNotNullString());
     }
+
+    public void Edit(string zipCode, DateTime measuredDate, float temperature, string condition, string userId) { }
   }
 }

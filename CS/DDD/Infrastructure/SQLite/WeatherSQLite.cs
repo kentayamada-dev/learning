@@ -44,5 +44,22 @@ namespace Infrastructure.SQLite
         new List<SqliteParameter> { new SqliteParameter("@userId", userId), new SqliteParameter("@zipCode", zipCode) }.ToArray()
       );
     }
+
+    public void Edit(string zipCode, DateTime measuredDate, float temperature, string condition, string userId)
+    {
+      WeatherEntity weather = new(zipCode, measuredDate, temperature, condition);
+      string sql =
+        @"INSERT OR REPLACE INTO Weather(zipCode, measuredDate, condition, temperature, userId) VALUES(@zipCode, @measuredDate, @condition, @temperature, @userId)";
+      List<SqliteParameter> args =
+        new()
+        {
+          new SqliteParameter("@zipCode", weather.ZipCode.DisplayValue),
+          new SqliteParameter("@measuredDate", weather.MeasuredDate.DisplayValue),
+          new SqliteParameter("@condition", weather.Condition.Value),
+          new SqliteParameter("@temperature", weather.Temperature.Value),
+          new SqliteParameter("@userId", userId)
+        };
+      SQLiteCore.Execute(sql, args.ToArray());
+    }
   }
 }

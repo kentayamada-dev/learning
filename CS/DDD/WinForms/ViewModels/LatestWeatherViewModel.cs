@@ -8,8 +8,8 @@ namespace WinForms.ViewModels
 {
   internal sealed class LatestWeatherViewModel : BaseViewModel
   {
-    private readonly ILatestWeatherRepository? _weather;
-    private readonly IAreaRepository? _area;
+    private readonly ILatestWeatherRepository _weather;
+    private readonly IAreaRepository _area;
     public BindingList<AreaViewModel> Areas { get; } = new();
 
     internal LatestWeatherViewModel()
@@ -60,7 +60,7 @@ namespace WinForms.ViewModels
 
     public void Search()
     {
-      WeatherEntity? weather = _weather?.Search(_selectedZipCode.ToNotNullString());
+      WeatherEntity? weather = _weather.Search(_selectedZipCode.ToNotNullString());
       if (weather == null)
       {
         MeasuredDate = "";

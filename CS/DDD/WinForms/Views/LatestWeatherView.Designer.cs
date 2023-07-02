@@ -60,6 +60,7 @@
       EditButton.TabIndex = 3;
       EditButton.Text = "Edit";
       EditButton.UseVisualStyleBackColor = true;
+      EditButton.Click += EditButton_Click;
       // 
       // label1
       // 

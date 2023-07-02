@@ -12,6 +12,11 @@ namespace Infrastructure
       return Shared.IsFake ? new WeatherFake() : new WeatherSQLite();
     }
 
+    public static IWeatherEditorRepository CreateWeatherEditor()
+    {
+      return Shared.IsFake ? new WeatherEditorFake() : new WeatherEditorRepository(new WeatherSQLite());
+    }
+
     public static IUserAuthRepository CreateUser()
     {
       return Shared.IsFake ? new UserAuthFake() : new UserAuthRepository(new UserSQLite());

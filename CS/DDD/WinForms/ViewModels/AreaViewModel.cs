@@ -6,7 +6,7 @@ namespace WinForms.ViewModels
   {
     private readonly AreaEntity _entity;
 
-    public AreaViewModel(AreaEntity entity)
+    internal AreaViewModel(AreaEntity entity)
     {
       _entity = entity;
     }
