@@ -9,18 +9,13 @@ namespace Domain.ValueObjects
 
     internal Name(string value)
     {
-      Validator(value);
-      Value = value;
-    }
-
-    internal static void Validator(string name)
-    {
       int minLength = 5;
       int maxLength = 10;
-      if (name.Length > maxLength || name.Length < minLength)
+      if (value.Length > maxLength || value.Length < minLength)
       {
         throw new CustomException($"Length of name should be between {minLength} to {maxLength}.", ExceptionKind.Error);
       }
+      Value = value;
     }
 
     public string DisplayValue => Value.ToString();

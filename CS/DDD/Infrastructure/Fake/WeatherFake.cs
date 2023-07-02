@@ -18,7 +18,7 @@ namespace Infrastructure.Fake
       foreach (string line in File.ReadAllLines(fakeWeathersPath))
       {
         string[] value = line.Split(",");
-        weathers.Add(new WeatherListEntity(value[0], value[1].ToDateTime(), value[2].ToSingle(), value[3], value[4]));
+        weathers.Add(new(value[0], value[1].ToDateTime(), value[2].ToSingle(), value[3], value[4]));
       }
       return weathers.AsReadOnly();
     }
@@ -34,6 +34,6 @@ namespace Infrastructure.Fake
       return new(value[0].ToNotNullString(), value[1].ToDateTime(), value[2].ToSingle(), value[3].ToNotNullString());
     }
 
-    public void Edit(string zipCode, DateTime measuredDate, float temperature, string condition, string userId) { }
+    public void Edit(WeatherEntity weather, string userId) { }
   }
 }

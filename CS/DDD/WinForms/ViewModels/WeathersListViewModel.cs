@@ -20,7 +20,7 @@ namespace WinForms.ViewModels
 
       foreach (WeatherListEntity entity in _weather.Gets(Shared.User?.ID.Value))
       {
-        Weathers.Add(new WeatherListViewModel(entity));
+        Weathers.Add(new(entity));
       }
     }
   }

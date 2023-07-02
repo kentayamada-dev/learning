@@ -23,7 +23,7 @@ namespace Infrastructure.SQLite
             reader[nameof(WeatherListEntity.Condition)].ToNotNullString(),
             reader[nameof(WeatherListEntity.StateAbbr)].ToNotNullString()
           ),
-        new List<SqliteParameter> { new SqliteParameter("@userId", userId) }.ToArray()
+        new List<SqliteParameter> { new("@userId", userId) }.ToArray()
       );
     }
 
@@ -41,23 +41,23 @@ namespace Infrastructure.SQLite
             reader[nameof(WeatherEntity.Temperature)].ToSingle(),
             reader[nameof(WeatherEntity.Condition)].ToNotNullString()
           ),
-        new List<SqliteParameter> { new SqliteParameter("@userId", userId), new SqliteParameter("@zipCode", zipCode) }.ToArray()
+        new List<SqliteParameter> { new("@userId", userId), new("@zipCode", zipCode) }.ToArray()
       );
     }
 
-    public void Edit(string zipCode, DateTime measuredDate, float temperature, string condition, string userId)
+    public void Edit(WeatherEntity weather, string userId)
     {
-      WeatherEntity weather = new(zipCode, measuredDate, temperature, condition);
       string sql =
         @"INSERT OR REPLACE INTO Weather(zipCode, measuredDate, condition, temperature, userId) VALUES(@zipCode, @measuredDate, @condition, @temperature, @userId)";
+
       List<SqliteParameter> args =
         new()
         {
-          new SqliteParameter("@zipCode", weather.ZipCode.DisplayValue),
-          new SqliteParameter("@measuredDate", weather.MeasuredDate.DisplayValue),
-          new SqliteParameter("@condition", weather.Condition.Value),
-          new SqliteParameter("@temperature", weather.Temperature.Value),
-          new SqliteParameter("@userId", userId)
+          new("@zipCode", weather.ZipCode.DisplayValue),
+          new("@measuredDate", weather.MeasuredDate.DisplayValue),
+          new("@condition", weather.Condition.Value),
+          new("@temperature", weather.Temperature.Value),
+          new("@userId", userId)
         };
       SQLiteCore.Execute(sql, args.ToArray());
     }

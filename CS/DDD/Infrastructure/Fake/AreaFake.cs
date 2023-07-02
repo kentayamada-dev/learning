@@ -17,7 +17,7 @@ namespace Infrastructure.Fake
       foreach (string line in File.ReadAllLines(fakeAreaPath))
       {
         string[] value = line.Split(",");
-        areas.Add(new AreaEntity(value[0], value[1]));
+        areas.Add(new(value[0], value[1]));
       }
       return areas.AsReadOnly();
     }

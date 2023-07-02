@@ -28,12 +28,12 @@ namespace WinForms.ViewModels
 
       foreach (AreaEntity areaData in _area.Gets())
       {
-        Areas.Add(new AreaViewModel(areaData));
+        Areas.Add(new(areaData));
       }
 
       foreach (Condition conditionData in Condition.ToList())
       {
-        Conditions.Add(new ConditionViewModel(conditionData));
+        Conditions.Add(new(conditionData));
       }
     }
 

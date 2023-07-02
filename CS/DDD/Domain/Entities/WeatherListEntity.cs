@@ -12,11 +12,11 @@ namespace Domain.Entities
 
     public WeatherListEntity(string zipCode, DateTime measuredDate, float temperature, string condition, string stateAbbr)
     {
-      ZipCode = new ZipCode(zipCode);
-      MeasuredDate = new CustomDateTime(measuredDate);
-      Temperature = new Temperature(temperature);
-      Condition = new Condition(condition);
-      StateAbbr = new StateAbbr(stateAbbr);
+      ZipCode = new(zipCode);
+      MeasuredDate = new(measuredDate);
+      Temperature = new(temperature);
+      Condition = new(condition);
+      StateAbbr = new(stateAbbr);
     }
   }
 }

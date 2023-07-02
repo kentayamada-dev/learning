@@ -9,8 +9,8 @@ namespace Domain.Entities
 
     public AreaEntity(string zipCode, string stateAbbr)
     {
-      ZipCode = new ZipCode(zipCode);
-      StateAbbr = new StateAbbr(stateAbbr);
+      ZipCode = new(zipCode);
+      StateAbbr = new(stateAbbr);
     }
   }
 }

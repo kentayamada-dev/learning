@@ -25,7 +25,7 @@ namespace WinForms.ViewModels
     internal void Signup()
     {
       UserEntity user = _user.Signup(Name, Password);
-      Shared.User = new UserEntity(user.ID.Value, user.Name.DisplayValue, user.Password.DisplayValue, user.CreatedAt.Value, user.UpdatedAt.Value);
+      Shared.User = new(user.ID.Value, user.Name.DisplayValue, user.Password.DisplayValue, user.CreatedAt.Value, user.UpdatedAt.Value);
     }
   }
 }

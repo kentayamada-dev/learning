@@ -21,14 +21,15 @@ namespace Infrastructure.SQLite
             reader[nameof(UserEntity.CreatedAt)].ToDateTime(),
             reader[nameof(UserEntity.UpdatedAt)].ToDateTime()
           ),
-        new List<SqliteParameter> { new SqliteParameter("@name", userName) }.ToArray()
+        new List<SqliteParameter> { new("@name", userName) }.ToArray()
       );
     }
 
-    public void Add(string userName, string password)
+    public void Add(AuthUserEntity user)
     {
       string sql = @"INSERT INTO User(name, password) VALUES(@name, @password)";
-      List<SqliteParameter> args = new() { new SqliteParameter("@name", userName), new SqliteParameter("@password", password), };
+
+      List<SqliteParameter> args = new() { new("@name", user.Name.DisplayValue), new("@password", user.Password.DisplayValue), };
       SQLiteCore.Execute(sql, args.ToArray());
     }
   }

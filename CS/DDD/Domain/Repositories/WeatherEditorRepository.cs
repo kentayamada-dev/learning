@@ -16,7 +16,7 @@ namespace Domain.Repositories
       UserEntity? currentUser = Shared.User;
       if (currentUser != null)
       {
-        _weather.Edit(zipCode, measuredDate, temperature, condition, currentUser.ID.DisplayValue);
+        _weather.Edit(new(zipCode, measuredDate, temperature, condition), currentUser.ID.DisplayValue);
       }
     }
   }
