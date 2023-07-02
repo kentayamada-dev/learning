@@ -34,6 +34,21 @@ namespace Infrastructure.Fake
       return new(value[0].ToNotNullString(), value[1].ToDateTime(), value[2].ToSingle(), value[3].ToNotNullString());
     }
 
+    public ReadOnlyCollection<WeatherEntity> GetLatestList(string userId)
+    {
+      string fakeWeathersPath =
+        Shared.FakeWeathersPath
+        ?? throw new CustomException($"{nameof(Shared.FakeWeathersPath)} not specified in appsettings.json.", CustomException.ExceptionKind.Error);
+      List<WeatherEntity> weathers = new();
+      foreach (string line in File.ReadAllLines(fakeWeathersPath))
+      {
+        string[] value = line.Split(",");
+        weathers.Add(new(value[0], value[1].ToDateTime(), value[2].ToSingle(), value[3]));
+      }
+
+      return weathers.AsReadOnly();
+    }
+
     public void Edit(WeatherEntity weather, string userId) { }
   }
 }

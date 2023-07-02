@@ -147,6 +147,7 @@
       CachedSearchCheckBox.TabIndex = 13;
       CachedSearchCheckBox.Text = "Cached Search";
       CachedSearchCheckBox.UseVisualStyleBackColor = true;
+      CachedSearchCheckBox.CheckedChanged += CachedSearchCheckBox_Click;
       // 
       // LatestWeatherView
       // 

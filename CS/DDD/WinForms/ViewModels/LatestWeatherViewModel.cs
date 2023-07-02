@@ -2,7 +2,9 @@
 using Domain.Entities;
 using Domain.Modules.Helpers;
 using Domain.Repositories;
+using Domain.StaticValues;
 using Infrastructure;
+using WinForms.BackgroundWorkers;
 
 namespace WinForms.ViewModels
 {
@@ -58,9 +60,11 @@ namespace WinForms.ViewModels
       set => SetProperty(ref _condition, value);
     }
 
-    public void Search()
+    internal void Search()
     {
-      WeatherEntity? weather = _weather.Search(_selectedZipCode.ToNotNullString());
+      WeatherEntity? weather = WeathersCachingWorker.IsWeathersCachingWorkerRunning
+        ? Weathers.GetCashedWeathers(_selectedZipCode.ToNotNullString())
+        : _weather.Search(_selectedZipCode.ToNotNullString());
       if (weather == null)
       {
         MeasuredDate = "";

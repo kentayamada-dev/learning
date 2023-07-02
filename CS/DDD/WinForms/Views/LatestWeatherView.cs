@@ -1,4 +1,5 @@
-﻿using WinForms.ViewModels;
+﻿using WinForms.BackgroundWorkers;
+using WinForms.ViewModels;
 
 namespace WinForms.Views
 {
@@ -40,6 +41,24 @@ namespace WinForms.Views
     {
       using WeatherEditorView WeatherEditorView = new();
       _ = WeatherEditorView.ShowDialog();
+    }
+
+    private void CachedSearchCheckBox_Click(object sender, EventArgs e)
+    {
+      if (((CheckBox)sender).CheckState == CheckState.Checked)
+      {
+        if (!WeathersCachingWorker.IsWeathersCachingWorkerRunning)
+        {
+          WeathersCachingWorker.Start();
+        }
+      }
+      else
+      {
+        if (WeathersCachingWorker.IsWeathersCachingWorkerRunning)
+        {
+          WeathersCachingWorker.Stop();
+        }
+      }
     }
   }
 }

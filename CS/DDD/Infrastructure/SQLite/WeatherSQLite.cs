@@ -61,5 +61,22 @@ namespace Infrastructure.SQLite
         };
       SQLiteCore.Execute(sql, args.ToArray());
     }
+
+    public ReadOnlyCollection<WeatherEntity> GetLatestList(string userId)
+    {
+      string sql =
+        @"SELECT w1.zipCode, w1.measuredDate, w1.condition, w1.temperature FROM Weather w1 WHERE w1.measuredDate = (SELECT MAX(w2.measuredDate) FROM Weather w2 WHERE w2.zipCode = w1.zipCode AND w2.userId = @userId)";
+      return SQLiteCore.Query(
+        sql,
+        reader =>
+          new WeatherEntity(
+            reader[nameof(WeatherEntity.ZipCode)].ToNotNullString(),
+            reader[nameof(WeatherEntity.MeasuredDate)].ToDateTime(),
+            reader[nameof(WeatherEntity.Temperature)].ToSingle(),
+            reader[nameof(WeatherEntity.Condition)].ToNotNullString()
+          ),
+        new List<SqliteParameter> { new("@userId", userId) }.ToArray()
+      );
+    }
   }
 }
