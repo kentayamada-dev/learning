@@ -114,6 +114,7 @@
       // 
       MeasuredDateTextBox.Location = new Point(501, 211);
       MeasuredDateTextBox.Name = "MeasuredDateTextBox";
+      MeasuredDateTextBox.ReadOnly = true;
       MeasuredDateTextBox.Size = new Size(379, 39);
       MeasuredDateTextBox.TabIndex = 9;
       // 
@@ -121,6 +122,7 @@
       // 
       ConditionTextBox.Location = new Point(501, 309);
       ConditionTextBox.Name = "ConditionTextBox";
+      ConditionTextBox.ReadOnly = true;
       ConditionTextBox.Size = new Size(379, 39);
       ConditionTextBox.TabIndex = 10;
       // 
@@ -128,6 +130,7 @@
       // 
       TemperatureTextBox.Location = new Point(501, 407);
       TemperatureTextBox.Name = "TemperatureTextBox";
+      TemperatureTextBox.ReadOnly = true;
       TemperatureTextBox.Size = new Size(379, 39);
       TemperatureTextBox.TabIndex = 11;
       // 
