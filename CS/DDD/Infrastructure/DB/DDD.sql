@@ -16,7 +16,7 @@ CREATE TABLE Weather(
   userId          INTEGER,
   PRIMARY KEY(zipCode, measuredDate)
   FOREIGN KEY(zipCode)        REFERENCES Area(zipCode)
-  FOREIGN KEY(userId)         REFERENCES User(id),
+  FOREIGN KEY(userId)         REFERENCES User(id)
   CHECK(measuredDate IS DATETIME(measuredDate))
   CHECK(condition = 'SUNNY' OR condition = 'CLOUDY' OR condition = 'RAINY' OR condition = 'UNKNOWN')
 ) STRICT;
@@ -48,11 +48,13 @@ INSERT INTO Area(zipCode, stateAbbr)
     ('35004', 'AL'),
     ('90001', 'CA'),
     ('32003', 'FL'),
-    ('22003', 'NY');
+    ('22003', 'NY'),
+    ('12345', 'DE');
 
 INSERT INTO Weather(zipCode, measuredDate, condition, temperature, userId)
   VALUES
     ('35004', '2018-08-10 11:10:10', 'SUNNY',   31,    1),
+    ('35004', '2018-08-20 05:10:10', 'RAINY',   31,    1),
     ('35004', '2018-08-11 12:10:10', 'CLOUDY',  30.2,  2),
     ('90001', '2018-08-11 13:10:10', 'RAINY',   24.3,  3),
     ('32003', '2018-08-12 14:10:10', 'UNKNOWN', 24.12, 3);

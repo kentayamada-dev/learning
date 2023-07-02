@@ -8,5 +8,3 @@ namespace Domain.Repositories
     UserEntity Signup(string name, string password);
   }
 }
-
-

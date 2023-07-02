@@ -12,7 +12,7 @@ namespace WinForms.ViewModels
     internal SigninViewModel()
       : this(Factories.CreateUser()) { }
 
-    internal SigninViewModel(IUserAuthRepository user)
+    private SigninViewModel(IUserAuthRepository user)
     {
       _user = user;
       Password = "";

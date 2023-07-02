@@ -16,5 +16,15 @@ namespace Infrastructure
     {
       return Shared.IsFake ? new UserAuthFake() : new UserAuthRepository(new UserSQLite());
     }
+
+    public static IAreaRepository CreateArea()
+    {
+      return Shared.IsFake ? new AreaFake() : new AreaSQLite();
+    }
+
+    public static ILatestWeatherRepository CreateLatestWeather()
+    {
+      return Shared.IsFake ? new LatestWeatherFake() : new LatestWeatherRepository(new WeatherSQLite());
+    }
   }
 }

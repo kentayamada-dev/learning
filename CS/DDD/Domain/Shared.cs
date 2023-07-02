@@ -11,13 +11,14 @@ namespace Domain
       .Build();
     public static bool IsDebugMode =>
 #if DEBUG
-  true;
+      true;
 #else
       false;
 #endif
     public static string? FakeUserPath => _configuration[nameof(FakeUserPath)];
     public static string? FakeWeathersPath => _configuration[nameof(FakeWeathersPath)];
     public static string? FakeAreasPath => _configuration[nameof(FakeAreasPath)];
+    public static string? FakeWeatherPath => _configuration[nameof(FakeWeatherPath)];
     public static bool IsFake => _configuration[nameof(IsFake)] == "True" && IsDebugMode;
     public static UserEntity? User { get; set; } = null;
   }

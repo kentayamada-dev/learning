@@ -6,5 +6,6 @@ namespace Domain.Repositories
   public interface IWeatherRepository
   {
     ReadOnlyCollection<WeatherListEntity> Gets(int? userId);
+    WeatherEntity? GetLatest(string userId, string zipCode);
   }
 }

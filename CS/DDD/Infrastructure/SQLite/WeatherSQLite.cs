@@ -26,5 +26,23 @@ namespace Infrastructure.SQLite
         new List<SqliteParameter> { new SqliteParameter("@userId", userId) }.ToArray()
       );
     }
+
+    public WeatherEntity? GetLatest(string userId, string zipCode)
+    {
+      string sql =
+        @"SELECT zipCode, measuredDate, temperature, condition FROM Weather WHERE userId = @userId AND zipCode = @zipCode ORDER BY measuredDate DESC";
+
+      return SQLiteCore.QuerySingle(
+        sql,
+        reader =>
+          new WeatherEntity(
+            reader[nameof(WeatherEntity.ZipCode)].ToNotNullString(),
+            reader[nameof(WeatherEntity.MeasuredDate)].ToDateTime(),
+            reader[nameof(WeatherEntity.Temperature)].ToSingle(),
+            reader[nameof(WeatherEntity.Condition)].ToNotNullString()
+          ),
+        new List<SqliteParameter> { new SqliteParameter("@userId", userId), new SqliteParameter("@zipCode", zipCode) }.ToArray()
+      );
+    }
   }
 }

@@ -6,7 +6,7 @@ using Infrastructure;
 
 namespace WinForms.ViewModels
 {
-  internal class WeathersListViewModel
+  internal sealed class WeathersListViewModel
   {
     private readonly IWeatherRepository _weather;
     public BindingList<WeatherListViewModel> Weathers { get; } = new();
@@ -14,7 +14,7 @@ namespace WinForms.ViewModels
     internal WeathersListViewModel()
       : this(Factories.CreateWeather()) { }
 
-    internal WeathersListViewModel(IWeatherRepository weather)
+    private WeathersListViewModel(IWeatherRepository weather)
     {
       _weather = weather;
 

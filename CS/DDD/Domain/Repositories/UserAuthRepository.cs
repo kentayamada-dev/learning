@@ -18,9 +18,7 @@ namespace Domain.Repositories
     {
       UserEntity? user = _user.GetByName(name);
 
-      return user == null || user.Password.Value != password
-        ? throw new CustomException("Incorrect Name or Password.", ExceptionKind.Error)
-        : user;
+      return user == null || user.Password.Value != password ? throw new CustomException("Incorrect Name or Password.", ExceptionKind.Error) : user;
     }
 
     public UserEntity Signup(string name, string password)
@@ -35,7 +33,8 @@ namespace Domain.Repositories
 
       _user.Add(name, password);
 
-      return _user.GetByName(name) ?? throw new CustomException("User Not Found.", ExceptionKind.Error); ;
+      return _user.GetByName(name) ?? throw new CustomException("User Not Found.", ExceptionKind.Error);
+      ;
     }
   }
 }

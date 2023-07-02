@@ -18,8 +18,8 @@ namespace WinForms.Views
       try
       {
         _model.Signin();
-        using WeatherListView WeatherListView = new();
-        _ = WeatherListView.ShowDialog();
+        using LatestWeatherView LatestWeatherView = new();
+        _ = LatestWeatherView.ShowDialog();
       }
       catch (Exception Exception)
       {
