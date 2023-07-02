@@ -1,4 +1,5 @@
-﻿using WinForms.BackgroundWorkers;
+﻿using Domain;
+using WinForms.BackgroundWorkers;
 using WinForms.ViewModels;
 
 namespace WinForms.Views
@@ -6,6 +7,7 @@ namespace WinForms.Views
   internal partial class LatestWeatherView : BaseView
   {
     private readonly LatestWeatherViewModel _model = new();
+    private int _count = 0;
 
     internal LatestWeatherView()
     {
@@ -17,6 +19,7 @@ namespace WinForms.Views
       _ = MeasuredDateTextBox.DataBindings.Add(nameof(MeasuredDateTextBox.Text), _model, nameof(_model.MeasuredDate));
       _ = ConditionTextBox.DataBindings.Add(nameof(ConditionTextBox.Text), _model, nameof(_model.Condition));
       _ = TemperatureTextBox.DataBindings.Add(nameof(TemperatureTextBox.Text), _model, nameof(_model.Temperature));
+      CachedSearchProgressBar.Maximum = Shared.CacheIntervalSec - 1;
     }
 
     private void SearchButton_Click(object sender, EventArgs e)
@@ -58,6 +61,23 @@ namespace WinForms.Views
         {
           WeathersCachingWorker.Stop();
         }
+      }
+    }
+
+    private void CachedSearchTimer_Tick(object sender, EventArgs e)
+    {
+      if (WeathersCachingWorker.IsWeathersCachingWorkerRunning)
+      {
+        CachedSearchProgressBar.Value = _count;
+        _count += 1;
+        if (_count % Shared.CacheIntervalSec == 0)
+        {
+          _count = 0;
+        }
+      }
+      else
+      {
+        CachedSearchProgressBar.Value = 0;
       }
     }
   }

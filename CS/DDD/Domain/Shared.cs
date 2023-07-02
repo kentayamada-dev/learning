@@ -20,6 +20,7 @@ namespace Domain
     public static string? FakeAreasPath => _configuration[nameof(FakeAreasPath)];
     public static string? FakeWeatherPath => _configuration[nameof(FakeWeatherPath)];
     public static bool IsFake => _configuration[nameof(IsFake)] == "True" && IsDebugMode;
+    public static int CacheIntervalSec => 30;
     public static UserEntity? User { get; set; } = null;
   }
 }

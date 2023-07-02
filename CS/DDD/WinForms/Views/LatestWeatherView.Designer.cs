@@ -28,6 +28,7 @@
     /// </summary>
     private void InitializeComponent()
     {
+      components = new System.ComponentModel.Container();
       ListButton = new Button();
       EditButton = new Button();
       label1 = new Label();
@@ -40,6 +41,8 @@
       TemperatureTextBox = new TextBox();
       SearchButton = new Button();
       CachedSearchCheckBox = new CheckBox();
+      CachedSearchTimer = new System.Windows.Forms.Timer(components);
+      CachedSearchProgressBar = new ProgressBar();
       SuspendLayout();
       // 
       // ListButton
@@ -132,7 +135,7 @@
       // 
       SearchButton.Location = new Point(66, 491);
       SearchButton.Name = "SearchButton";
-      SearchButton.Size = new Size(499, 79);
+      SearchButton.Size = new Size(497, 97);
       SearchButton.TabIndex = 12;
       SearchButton.Text = "Search";
       SearchButton.UseVisualStyleBackColor = true;
@@ -141,7 +144,7 @@
       // CachedSearchCheckBox
       // 
       CachedSearchCheckBox.AutoSize = true;
-      CachedSearchCheckBox.Location = new Point(677, 513);
+      CachedSearchCheckBox.Location = new Point(633, 491);
       CachedSearchCheckBox.Name = "CachedSearchCheckBox";
       CachedSearchCheckBox.Size = new Size(203, 36);
       CachedSearchCheckBox.TabIndex = 13;
@@ -149,10 +152,25 @@
       CachedSearchCheckBox.UseVisualStyleBackColor = true;
       CachedSearchCheckBox.CheckedChanged += CachedSearchCheckBox_Click;
       // 
+      // CachedSearchTimer
+      // 
+      CachedSearchTimer.Enabled = true;
+      CachedSearchTimer.Interval = 1000;
+      CachedSearchTimer.Tick += CachedSearchTimer_Tick;
+      // 
+      // CachedSearchProgressBar
+      // 
+      CachedSearchProgressBar.Location = new Point(581, 542);
+      CachedSearchProgressBar.Name = "CachedSearchProgressBar";
+      CachedSearchProgressBar.Size = new Size(299, 46);
+      CachedSearchProgressBar.Style = ProgressBarStyle.Continuous;
+      CachedSearchProgressBar.TabIndex = 14;
+      // 
       // LatestWeatherView
       // 
       AutoScaleDimensions = new SizeF(13F, 32F);
       ClientSize = new Size(1000, 600);
+      Controls.Add(CachedSearchProgressBar);
       Controls.Add(CachedSearchCheckBox);
       Controls.Add(SearchButton);
       Controls.Add(TemperatureTextBox);
@@ -179,6 +197,7 @@
       Controls.SetChildIndex(TemperatureTextBox, 0);
       Controls.SetChildIndex(SearchButton, 0);
       Controls.SetChildIndex(CachedSearchCheckBox, 0);
+      Controls.SetChildIndex(CachedSearchProgressBar, 0);
       ResumeLayout(false);
       PerformLayout();
     }
@@ -197,5 +216,7 @@
     private TextBox TemperatureTextBox;
     private Button SearchButton;
     private CheckBox CachedSearchCheckBox;
+    private System.Windows.Forms.Timer CachedSearchTimer;
+    private ProgressBar CachedSearchProgressBar;
   }
 }

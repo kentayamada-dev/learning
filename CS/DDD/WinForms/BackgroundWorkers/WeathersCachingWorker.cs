@@ -1,4 +1,5 @@
-﻿using Domain.StaticValues;
+﻿using Domain;
+using Domain.StaticValues;
 using Infrastructure;
 
 namespace WinForms.BackgroundWorkers
@@ -7,7 +8,7 @@ namespace WinForms.BackgroundWorkers
   {
     private static readonly System.Threading.Timer _timer;
     private static bool _isCreatingCache = false;
-    public static bool IsWeathersCachingWorkerRunning;
+    public static bool IsWeathersCachingWorkerRunning = false;
 
     static WeathersCachingWorker()
     {
@@ -17,7 +18,7 @@ namespace WinForms.BackgroundWorkers
     internal static void Start()
     {
       IsWeathersCachingWorkerRunning = true;
-      _ = _timer.Change(0, 30000);
+      _ = _timer.Change(0, Shared.CacheIntervalSec * 1000);
     }
 
     internal static void Stop()
