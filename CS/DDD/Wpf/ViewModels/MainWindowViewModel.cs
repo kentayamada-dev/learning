@@ -2,10 +2,10 @@
 
 namespace Wpf.ViewModels
 {
-  public class MainWindowViewModel : BindableBase
+  internal class MainWindowViewModel : BindableBase
   {
     private string _title = "Main Window";
-    public MainWindowViewModel()
+    private MainWindowViewModel()
     {
     }
 
