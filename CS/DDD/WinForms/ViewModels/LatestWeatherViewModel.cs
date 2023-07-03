@@ -28,7 +28,7 @@ namespace WinForms.ViewModels
 
       foreach (AreaEntity areaData in _area.Gets())
       {
-        Areas.Add(new AreaViewModel(areaData));
+        Areas.Add(new(areaData));
       }
     }
 
