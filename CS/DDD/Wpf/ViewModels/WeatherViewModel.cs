@@ -4,15 +4,8 @@ namespace Wpf.ViewModels
 {
   internal class WeatherViewModel : BindableBase
   {
-    private string _title = "Weather";
-    private WeatherViewModel()
-    {
-    }
+    private WeatherViewModel() { }
 
-    public string Title
-    {
-      get => _title;
-      set => SetProperty(ref _title, value);
-    }
+    public static string Title => "Weather";
   }
 }
