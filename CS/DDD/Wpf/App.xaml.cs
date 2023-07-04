@@ -13,7 +13,7 @@ namespace Wpf
 
     protected override Window CreateShell()
     {
-      return Container.Resolve<WeatherWindow>();
+      return Container.Resolve<WeatherView>();
     }
   }
 }

@@ -2,10 +2,10 @@
 
 namespace Wpf.ViewModels
 {
-  internal class WeatherWindowViewModel : BindableBase
+  internal class WeatherViewModel : BindableBase
   {
     private string _title = "Weather";
-    private WeatherWindowViewModel()
+    private WeatherViewModel()
     {
     }
 

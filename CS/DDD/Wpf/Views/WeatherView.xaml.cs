@@ -2,9 +2,9 @@
 
 namespace Wpf.Views
 {
-  public partial class WeatherWindow : Window
+  public partial class WeatherView : Window
   {
-    private WeatherWindow()
+    private WeatherView()
     {
       InitializeComponent();
     }
