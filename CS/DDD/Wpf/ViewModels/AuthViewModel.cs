@@ -19,7 +19,7 @@ namespace Wpf.ViewModels
     private readonly IUserAuthRepository _user;
 
     private AuthViewModel()
-  : this(Factories.CreateUser()) { }
+      : this(Factories.CreateUser()) { }
 
     private AuthViewModel(IUserAuthRepository user)
     {
@@ -59,8 +59,15 @@ namespace Wpf.ViewModels
 
     private void Auth()
     {
-      UserEntity user = _isSignup ? _user.Signup(Name, Password) : _user.Signin(Name, Password);
-      Shared.User = new(user.ID.Value, user.Name.DisplayValue, user.Password.DisplayValue, user.CreatedAt.Value, user.UpdatedAt.Value);
+      try
+      {
+        UserEntity user = _isSignup ? _user.Signup(Name, Password) : _user.Signin(Name, Password);
+        Shared.User = new(user.ID.Value, user.Name.DisplayValue, user.Password.DisplayValue, user.CreatedAt.Value, user.UpdatedAt.Value);
+      }
+      catch (Exception Ex)
+      {
+        App.BaseExceptionProc(Ex);
+      }
     }
 
     private void ChangeAuthMode()

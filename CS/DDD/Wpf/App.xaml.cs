@@ -1,5 +1,7 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using Domain;
+using Domain.Exceptions;
 using Prism.DryIoc;
 using Prism.Ioc;
 using Prism.Services.Dialogs;
@@ -9,6 +11,31 @@ namespace Wpf
 {
   public partial class App : PrismApplication
   {
+    internal static void BaseExceptionProc(Exception exception)
+    {
+      MessageBoxImage icon = MessageBoxImage.None;
+      string caption = "";
+      if (exception is CustomException customException)
+      {
+        if (customException.Kind == CustomException.ExceptionKind.Information)
+        {
+          icon = MessageBoxImage.Information;
+          caption = "Information";
+        }
+        else if (customException.Kind == CustomException.ExceptionKind.Warning)
+        {
+          icon = MessageBoxImage.Warning;
+          caption = "Warning";
+        }
+        else
+        {
+          icon = MessageBoxImage.Error;
+          caption = "Error";
+        }
+      }
+      _ = MessageBox.Show(exception.Message, caption, MessageBoxButton.OK, icon);
+    }
+
     protected override void RegisterTypes(IContainerRegistry containerRegistry)
     {
       containerRegistry.RegisterDialog<AuthView>();
@@ -23,19 +50,21 @@ namespace Wpf
     protected override void OnInitialized()
     {
       IDialogService dialog = Container.Resolve<IDialogService>();
+
       if (Shared.IsDebugMode)
       {
         dialog.ShowDialog(
-        nameof(DebugView),
-        callback =>
-        {
-          if (callback.Result != ButtonResult.OK)
+          nameof(DebugView),
+          callback =>
           {
-            Current.Shutdown();
+            if (callback.Result != ButtonResult.OK)
+            {
+              Current.Shutdown();
+            }
           }
-        }
-      );
+        );
       }
+
       dialog.ShowDialog(
         nameof(AuthView),
         callback =>
@@ -46,6 +75,7 @@ namespace Wpf
           }
         }
       );
+
       base.OnInitialized();
     }
   }
