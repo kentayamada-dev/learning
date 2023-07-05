@@ -15,7 +15,7 @@ namespace Wpf.ViewModels
     public DelegateCommand CloseCommand { get; }
     public DelegateCommand AuthCommand { get; }
     public DelegateCommand ToggleAuthCommand { get; }
-    private bool _isSignup;
+    private bool _isSigin;
     private readonly IUserAuthRepository _user;
 
     private AuthViewModel()
@@ -29,9 +29,9 @@ namespace Wpf.ViewModels
       ToggleAuthCommand = new DelegateCommand(ChangeAuthMode);
       Password = "";
       Name = "";
-      _isSignup = true;
-      _authModeLabel = "SIGN UP";
-      _toggleAuthLabel = "Sign In?";
+      _isSigin = true;
+      _authModeLabel = "SIGN IN";
+      _toggleAuthLabel = "Sign Up?";
     }
 
     private void Close()
@@ -61,8 +61,9 @@ namespace Wpf.ViewModels
     {
       try
       {
-        UserEntity user = _isSignup ? _user.Signup(Name, Password) : _user.Signin(Name, Password);
+        UserEntity user = _isSigin ? _user.Signin(Name, Password) : _user.Signup(Name, Password);
         Shared.User = new(user.ID.Value, user.Name.DisplayValue, user.Password.DisplayValue, user.CreatedAt.Value, user.UpdatedAt.Value);
+        RequestClose?.Invoke(new DialogResult(ButtonResult.OK));
       }
       catch (Exception Ex)
       {
@@ -72,9 +73,9 @@ namespace Wpf.ViewModels
 
     private void ChangeAuthMode()
     {
-      ToggleAuthLabel = _isSignup ? "Sign Up?" : "Sign In?";
-      AuthModeLabel = _isSignup ? "SIGN IN" : "SIGN UP";
-      _isSignup = !_isSignup;
+      ToggleAuthLabel = _isSigin ? "Sign In?" : "Sign Up?";
+      AuthModeLabel = _isSigin ? "SIGN UP" : "SIGN IN";
+      _isSigin = !_isSigin;
     }
 
     public bool CanCloseDialog()
