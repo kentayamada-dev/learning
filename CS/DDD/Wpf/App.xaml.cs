@@ -4,6 +4,7 @@ using Domain;
 using Domain.Exceptions;
 using Prism.DryIoc;
 using Prism.Ioc;
+using Prism.Regions;
 using Prism.Services.Dialogs;
 using Wpf.Views;
 
@@ -75,6 +76,10 @@ namespace Wpf
           }
         }
       );
+
+      IRegionManager regionManager = Container.Resolve<IRegionManager>();
+      _ = regionManager.RegisterViewWithRegion("UserInfoViewRegion", typeof(UserInfoView));
+      _ = regionManager.RegisterViewWithRegion("LatestWeatherViewRegion", typeof(LatestWeatherView));
 
       base.OnInitialized();
     }

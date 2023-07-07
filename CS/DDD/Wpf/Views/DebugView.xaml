@@ -41,6 +41,7 @@
       IsTabStop="False"
       Margin="0 0 0 10"
       IsChecked="{Binding Path=IsFakeDataMode, Mode=OneWay}"/>
+    
     <Grid
       Height="30">
       <Grid.ColumnDefinitions>
@@ -58,5 +59,6 @@
         Command="{Binding ExitCommand}"
         Margin="10 0 00 0"/>
     </Grid>
+    
   </StackPanel>
 </UserControl>
