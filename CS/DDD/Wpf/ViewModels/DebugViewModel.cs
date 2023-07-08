@@ -9,18 +9,18 @@ namespace Wpf.ViewModels
   internal class DebugViewModel : BindableBase, IDialogAware
   {
     public event Action<IDialogResult>? RequestClose;
-    public DelegateCommand ProceedCommand { get; }
-    public DelegateCommand ExitCommand { get; }
-
-    private DebugViewModel()
-    {
-      ProceedCommand = new DelegateCommand(Proceed);
-      ExitCommand = new DelegateCommand(Exit);
-    }
 
     public static bool IsDebugMode => Shared.IsDebugMode;
     public static bool IsFakeDataMode => Shared.IsFake;
     public string Title => "Debug";
+
+    private DelegateCommand? _proceedCommand;
+    public DelegateCommand ProceedCommand =>
+_proceedCommand ??= new DelegateCommand(Proceed);
+
+    private DelegateCommand? _exitCommand;
+    public DelegateCommand ExitCommand =>
+_exitCommand ??= new DelegateCommand(Exit);
 
     private void Exit()
     {

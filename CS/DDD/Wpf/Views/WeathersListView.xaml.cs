@@ -2,9 +2,9 @@
 
 namespace Wpf.Views
 {
-  public partial class LatestWeatherView : UserControl
+  public partial class WeathersListView : UserControl
   {
-    public LatestWeatherView()
+    public WeathersListView()
     {
       InitializeComponent();
     }

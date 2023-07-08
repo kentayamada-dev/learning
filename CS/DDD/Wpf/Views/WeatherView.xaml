@@ -13,27 +13,30 @@
   Height="450"
   Width="800"
   ResizeMode="NoResize">
-  
   <Grid>
     <Grid.ColumnDefinitions>
       <ColumnDefinition/>
-      <ColumnDefinition Width="2*"/>
+      <ColumnDefinition
+        Width="2*"/>
     </Grid.ColumnDefinitions>
-    
     <Grid>
       <ContentControl
         prism:RegionManager.RegionName="UserInfoViewRegion"/>
     </Grid>
-    
-    <TabControl Grid.Column="1">
-      <TabItem Header="Latest">
+    <TabControl
+      Grid.Column="1">
+      <TabItem
+        Header="Latest">
         <ContentControl
-        prism:RegionManager.RegionName="LatestWeatherViewRegion"/>
+          prism:RegionManager.RegionName="LatestWeatherViewRegion"/>
       </TabItem>
-      <TabItem Header="List">
-        <Label>い</Label>
+      <TabItem
+        Header="List">
+        <ContentControl
+          prism:RegionManager.RegionName="WeathersListViewRegion"/>
       </TabItem>
-      <TabItem Header="Edit">
+      <TabItem
+        Header="Edit">
         <Label>う</Label>
       </TabItem>
     </TabControl>

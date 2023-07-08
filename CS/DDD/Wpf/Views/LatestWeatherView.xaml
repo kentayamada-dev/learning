@@ -10,7 +10,6 @@
   d:DesignHeight="500"
   d:DesignWidth="500"
   d:Background="WhiteSmoke">
-
   <StackPanel
     Margin="30">
     <Grid
@@ -27,13 +26,12 @@
         VerticalContentAlignment="Center"/>
       <ComboBox 
         Grid.Column="1"
-        SelectedItem="{Binding SelectedZipCode}"
+        SelectedItem="{Binding SelectedArea}"
         VerticalContentAlignment="Center"
         ItemsSource="{Binding Areas}"
         SelectedValuePath="ZipCode"
         DisplayMemberPath="StateAbbr"/>
     </Grid>
-    
     <Grid
       Height="30"
       Margin="0 0 0 30">
@@ -52,7 +50,6 @@
         IsReadOnly="True"
         VerticalContentAlignment="Center"/>
     </Grid>
-    
     <Grid
       Height="30"
       Margin="0 0 0 30">
@@ -71,7 +68,6 @@
         IsReadOnly="True"
         VerticalContentAlignment="Center"/>
     </Grid>
-    
     <Grid
       Height="30"
       Margin="0 0 0 30">
@@ -90,7 +86,6 @@
         IsReadOnly="True"
         VerticalContentAlignment="Center"/>
     </Grid>
-    
     <Button
       Content="Search"
       Height="50"

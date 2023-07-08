@@ -80,6 +80,7 @@ namespace Wpf
       IRegionManager regionManager = Container.Resolve<IRegionManager>();
       _ = regionManager.RegisterViewWithRegion("UserInfoViewRegion", typeof(UserInfoView));
       _ = regionManager.RegisterViewWithRegion("LatestWeatherViewRegion", typeof(LatestWeatherView));
+      _ = regionManager.RegisterViewWithRegion("WeathersListViewRegion", typeof(WeathersListView));
 
       base.OnInitialized();
     }

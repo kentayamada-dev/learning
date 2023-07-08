@@ -12,10 +12,7 @@ namespace Wpf.ViewModels
   internal class AuthViewModel : BindableBase, IDialogAware
   {
     public event Action<IDialogResult>? RequestClose;
-    public DelegateCommand CloseCommand { get; }
-    public DelegateCommand AuthCommand { get; }
-    public DelegateCommand ToggleAuthCommand { get; }
-    private bool _isSigin;
+    private bool _isSigin = true;
     private readonly IUserAuthRepository _user;
 
     private AuthViewModel()
@@ -24,15 +21,19 @@ namespace Wpf.ViewModels
     private AuthViewModel(IUserAuthRepository user)
     {
       _user = user;
-      CloseCommand = new DelegateCommand(Close);
-      AuthCommand = new DelegateCommand(Auth);
-      ToggleAuthCommand = new DelegateCommand(ChangeAuthMode);
-      Password = "";
-      Name = "";
-      _isSigin = true;
-      _authModeLabel = "SIGN IN";
-      _toggleAuthLabel = "Sign Up?";
     }
+
+    private DelegateCommand? _toggleAuthCommand;
+    public DelegateCommand ToggleAuthCommand =>
+_toggleAuthCommand ??= new DelegateCommand(ChangeAuthMode);
+
+    private DelegateCommand? _authCommand;
+    public DelegateCommand AuthCommand =>
+_authCommand ??= new DelegateCommand(Auth);
+
+    private DelegateCommand? _closeCommand;
+    public DelegateCommand CloseCommand =>
+_closeCommand ??= new DelegateCommand(Close);
 
     private void Close()
     {
@@ -40,17 +41,17 @@ namespace Wpf.ViewModels
     }
 
     public string Title => "Auth";
-    public string Password { get; set; }
-    public string Name { get; set; }
+    public string Password { get; set; } = "";
+    public string Name { get; set; } = "";
 
-    private string _authModeLabel;
+    private string _authModeLabel = "SIGN IN";
     public string AuthModeLabel
     {
       get => _authModeLabel;
       set => SetProperty(ref _authModeLabel, value);
     }
 
-    private string _toggleAuthLabel;
+    private string _toggleAuthLabel = "Sign Up?";
     public string ToggleAuthLabel
     {
       get => _toggleAuthLabel;

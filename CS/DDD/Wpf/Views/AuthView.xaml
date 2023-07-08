@@ -11,7 +11,6 @@
   d:Width="600"
   d:Height="350"
   d:Background="WhiteSmoke">
-  
   <prism:Dialog.WindowStyle>
     <Style
       TargetType="Window">
@@ -29,7 +28,6 @@
         Value="CenterScreen"/>
     </Style>
   </prism:Dialog.WindowStyle>
-
   <StackPanel
     VerticalAlignment="Center"
     Margin="30 0 30 0">
@@ -50,7 +48,6 @@
         Grid.Column="1"
         VerticalContentAlignment="Center"/>
     </Grid>
-    
     <Grid
       Height="30"
       Margin="0 0 0 30">
@@ -68,13 +65,11 @@
         Grid.Column="1"
         VerticalContentAlignment="Center"/>
     </Grid>
-    
     <Button
       Content="{Binding AuthModeLabel}"
       Height="50"
       Command="{Binding AuthCommand}"
       Margin="0 0 0 10"/>
-    
     <Button
       HorizontalAlignment="Right"
       Width="100"

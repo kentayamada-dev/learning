@@ -11,20 +11,14 @@ namespace Wpf.ViewModels
   {
     private readonly ILatestWeatherRepository _weather;
     private readonly IAreaRepository _area;
-    public DelegateCommand SearchCommand { get; }
 
-    internal LatestWeatherViewModel()
+    private LatestWeatherViewModel()
       : this(Factories.CreateLatestWeather(), Factories.CreateArea()) { }
 
     private LatestWeatherViewModel(ILatestWeatherRepository weather, IAreaRepository area)
     {
-      SearchCommand = new DelegateCommand(Search);
       _weather = weather;
       _area = area;
-      _selectedZipCode = null;
-      _measuredDate = "";
-      _temperature = "";
-      _condition = "";
 
       foreach (AreaEntity areaData in _area.Gets())
       {
@@ -39,39 +33,43 @@ namespace Wpf.ViewModels
       set => SetProperty(ref _areas, value);
     }
 
-    private AreaViewModel? _selectedZipCode;
-    public AreaViewModel? SelectedZipCode
+    private AreaViewModel? _selectedArea;
+    public AreaViewModel? SelectedArea
     {
-      get => _selectedZipCode;
-      set => SetProperty(ref _selectedZipCode, value);
+      get => _selectedArea;
+      set => SetProperty(ref _selectedArea, value);
     }
 
-    private string _measuredDate;
+    private string _measuredDate = "";
     public string MeasuredDate
     {
       get => _measuredDate;
       set => SetProperty(ref _measuredDate, value);
     }
 
-    private string _temperature;
+    private string _temperature = "";
     public string Temperature
     {
       get => _temperature;
       set => SetProperty(ref _temperature, value);
     }
 
-    private string _condition;
+    private string _condition = "";
     public string Condition
     {
       get => _condition;
       set => SetProperty(ref _condition, value);
     }
 
+    private DelegateCommand? _searchCommand;
+    public DelegateCommand SearchCommand =>
+_searchCommand ??= new DelegateCommand(Search);
+
     internal void Search()
     {
-      if (_selectedZipCode != null)
+      if (_selectedArea != null)
       {
-        WeatherEntity? weather = _weather.Search(_selectedZipCode.ZipCode);
+        WeatherEntity? weather = _weather.Search(_selectedArea.ZipCode);
         if (weather == null)
         {
           MeasuredDate = "";

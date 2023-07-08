@@ -10,14 +10,12 @@
   d:DesignHeight="500"
   d:DesignWidth="300"
   d:Background="WhiteSmoke">
-
   <StackPanel
     Margin="10">
     <Label
       Content="User Info"
       FontSize="20"
       HorizontalAlignment="Center"/>
-    
     <Grid
       Height="30"
       Margin="0 0 0 10">
@@ -36,7 +34,6 @@
         Text="{Binding ID}"
         VerticalContentAlignment="Center"/>
     </Grid>
-    
     <Grid
       Height="30"
       Margin="0 0 0 10">
@@ -55,7 +52,6 @@
         Text="{Binding Name}"
         VerticalContentAlignment="Center"/>
     </Grid>
-    
     <Grid
       Height="30"
       Margin="0 0 0 10">
@@ -74,7 +70,6 @@
         Text="{Binding Password}"
         VerticalContentAlignment="Center"/>
     </Grid>
-    
     <Grid
       Height="30"
       Margin="0 0 0 10">
@@ -93,7 +88,6 @@
         Text="{Binding UpdatedAt}"
         VerticalContentAlignment="Center"/>
     </Grid>
-    
     <Grid
       Height="30"
       Margin="0 0 0 10">
