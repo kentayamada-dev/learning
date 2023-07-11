@@ -16,6 +16,9 @@ namespace Wpf.ViewModels
     private readonly IWeatherEditorRepository _weatherEditor;
     private readonly IWeatherRepository _weather;
     private readonly IAreaRepository _area;
+    public ObservableCollection<WeatherListViewModel> Weathers { get; } = new();
+    public ObservableCollection<ConditionViewModel> Conditions { get; } = new();
+    public ObservableCollection<AreaViewModel> Areas { get; } = new();
 
     internal WeatherViewModel()
       : this(Factories.CreateWeatherEditor(), Factories.CreateWeather(), Factories.CreateArea()) { }
@@ -42,9 +45,6 @@ namespace Wpf.ViewModels
       }
     }
 
-    public ObservableCollection<WeatherListViewModel> Weathers { get; } = new();
-    public ObservableCollection<ConditionViewModel> Conditions { get; } = new();
-    public ObservableCollection<AreaViewModel> Areas { get; } = new();
     public AreaViewModel? SelectedArea { get; set; }
     public ConditionViewModel? SelectedCondition { get; set; }
     private DateTime _measuredDate = DateTime.Now;

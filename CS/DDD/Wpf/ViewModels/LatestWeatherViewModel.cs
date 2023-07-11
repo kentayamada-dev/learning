@@ -11,6 +11,7 @@ namespace Wpf.ViewModels
   {
     private readonly ILatestWeatherRepository _weather;
     private readonly IAreaRepository _area;
+    public ObservableCollection<AreaViewModel> Areas { get; } = new();
 
     private LatestWeatherViewModel()
       : this(Factories.CreateLatestWeather(), Factories.CreateArea()) { }
@@ -28,8 +29,6 @@ namespace Wpf.ViewModels
 
     private DelegateCommand? _searchCommand;
     public DelegateCommand SearchCommand => _searchCommand ??= new DelegateCommand(Search);
-
-    public ObservableCollection<AreaViewModel> Areas { get; private set; } = new();
 
     private AreaViewModel? _selectedArea;
     public AreaViewModel? SelectedArea
