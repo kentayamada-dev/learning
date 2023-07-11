@@ -1,44 +1,304 @@
-﻿<Window
+﻿<UserControl
   x:Class="Wpf.Views.WeatherView"
+  x:Name="_weatherView"
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   xmlns:viewmodels="clr-namespace:Wpf.ViewModels"
   xmlns:prism="http://prismlibrary.com/"
+  xmlns:xceed="http://schemas.xceed.com/wpf/xaml/toolkit"
   mc:Ignorable="d"
   d:DataContext="{d:DesignInstance Type=viewmodels:WeatherViewModel}"
-  WindowStartupLocation="CenterScreen"
-  Title="{Binding Title}"
-  Height="450"
-  Width="800"
-  ResizeMode="NoResize">
+  d:DesignHeight="450"
+  d:DesignWidth="800"
+  d:Background="WhiteSmoke">
   <Grid>
     <Grid.ColumnDefinitions>
-      <ColumnDefinition/>
+      <ColumnDefinition />
       <ColumnDefinition
-        Width="2*"/>
+        Width="2*" />
     </Grid.ColumnDefinitions>
     <Grid>
       <ContentControl
-        prism:RegionManager.RegionName="UserInfoViewRegion"/>
+        prism:RegionManager.RegionName="UserInfoViewRegion" />
     </Grid>
     <TabControl
+      SelectedIndex="{Binding SelectedIndex}"
       Grid.Column="1">
       <TabItem
         Header="Latest">
         <ContentControl
-          prism:RegionManager.RegionName="LatestWeatherViewRegion"/>
+          prism:RegionManager.RegionName="LatestWeatherViewRegion" />
       </TabItem>
       <TabItem
         Header="List">
-        <ContentControl
-          prism:RegionManager.RegionName="WeathersListViewRegion"/>
+        <Grid>
+          <DataGrid
+            ItemsSource="{Binding Weathers}"
+            AutoGenerateColumns="false"
+            IsReadOnly="True">
+            <DataGrid.Columns>
+              <DataGridTextColumn
+                Header="Zip Code"
+                Binding="{Binding ZipCode}">
+                <DataGridTextColumn.HeaderStyle>
+                  <Style
+                    TargetType="DataGridColumnHeader">
+                    <Setter
+                      Property="HorizontalContentAlignment"
+                      Value="Center" />
+                  </Style>
+                </DataGridTextColumn.HeaderStyle>
+                <DataGridTextColumn.ElementStyle>
+                  <Style
+                    TargetType="TextBlock">
+                    <Setter
+                      Property="HorizontalAlignment"
+                      Value="Center" />
+                    <Setter
+                      Property="VerticalAlignment"
+                      Value="Center" />
+                  </Style>
+                </DataGridTextColumn.ElementStyle>
+              </DataGridTextColumn>
+              <DataGridTextColumn
+                Header="State Abbr"
+                Binding="{Binding StateAbbr}">
+                <DataGridTextColumn.HeaderStyle>
+                  <Style
+                    TargetType="DataGridColumnHeader">
+                    <Setter
+                      Property="HorizontalContentAlignment"
+                      Value="Center" />
+                  </Style>
+                </DataGridTextColumn.HeaderStyle>
+                <DataGridTextColumn.ElementStyle>
+                  <Style
+                    TargetType="TextBlock">
+                    <Setter
+                      Property="HorizontalAlignment"
+                      Value="Center" />
+                    <Setter
+                      Property="VerticalAlignment"
+                      Value="Center" />
+                  </Style>
+                </DataGridTextColumn.ElementStyle>
+              </DataGridTextColumn>
+              <DataGridTextColumn
+                Header="Measured Date"
+                Binding="{Binding MeasuredDateDisplayValue}"
+                Width="2*">
+                <DataGridTextColumn.HeaderStyle>
+                  <Style
+                    TargetType="DataGridColumnHeader">
+                    <Setter
+                      Property="HorizontalContentAlignment"
+                      Value="Center" />
+                  </Style>
+                </DataGridTextColumn.HeaderStyle>
+                <DataGridTextColumn.ElementStyle>
+                  <Style
+                    TargetType="TextBlock">
+                    <Setter
+                      Property="HorizontalAlignment"
+                      Value="Center" />
+                    <Setter
+                      Property="VerticalAlignment"
+                      Value="Center" />
+                  </Style>
+                </DataGridTextColumn.ElementStyle>
+              </DataGridTextColumn>
+              <DataGridTextColumn
+                Header="Condition"
+                Binding="{Binding ConditionDisplayValue}"
+                Width="*">
+                <DataGridTextColumn.HeaderStyle>
+                  <Style
+                    TargetType="DataGridColumnHeader">
+                    <Setter
+                      Property="HorizontalContentAlignment"
+                      Value="Center" />
+                  </Style>
+                </DataGridTextColumn.HeaderStyle>
+                <DataGridTextColumn.ElementStyle>
+                  <Style
+                    TargetType="TextBlock">
+                    <Setter
+                      Property="HorizontalAlignment"
+                      Value="Center" />
+                    <Setter
+                      Property="VerticalAlignment"
+                      Value="Center" />
+                  </Style>
+                </DataGridTextColumn.ElementStyle>
+              </DataGridTextColumn>
+              <DataGridTextColumn
+                Header="Temperature"
+                Binding="{Binding TemperatureDisplayValue}"
+                Width="*">
+                <DataGridTextColumn.HeaderStyle>
+                  <Style
+                    TargetType="DataGridColumnHeader">
+                    <Setter
+                      Property="HorizontalContentAlignment"
+                      Value="Center" />
+                  </Style>
+                </DataGridTextColumn.HeaderStyle>
+                <DataGridTextColumn.ElementStyle>
+                  <Style
+                    TargetType="TextBlock">
+                    <Setter
+                      Property="HorizontalAlignment"
+                      Value="Right" />
+                    <Setter
+                      Property="VerticalAlignment"
+                      Value="Center" />
+                  </Style>
+                </DataGridTextColumn.ElementStyle>
+              </DataGridTextColumn>
+              <DataGridTemplateColumn
+                Header="Action"
+                Width="*">
+                <DataGridTemplateColumn.HeaderStyle>
+                  <Style
+                    TargetType="DataGridColumnHeader">
+                    <Setter
+                      Property="HorizontalContentAlignment"
+                      Value="Center" />
+                  </Style>
+                </DataGridTemplateColumn.HeaderStyle>
+                <DataGridTemplateColumn.CellTemplate>
+                  <DataTemplate>
+                    <Button
+                      Margin="3"
+                      Command="{Binding DataContext.EditWeatherCommand, ElementName=_weatherView}"
+                      Content="Edit"
+                      CommandParameter="{Binding}" />
+                  </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+              </DataGridTemplateColumn>
+            </DataGrid.Columns>
+          </DataGrid>
+        </Grid>
       </TabItem>
       <TabItem
         Header="Edit">
-        <Label>う</Label>
+        <StackPanel
+          Margin="30">
+          <Grid
+            Height="30"
+            Margin="0 0 0 30">
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition />
+              <ColumnDefinition
+                Width="2*" />
+            </Grid.ColumnDefinitions>
+            <Label
+              Grid.Column="0"
+              Content="State"
+              VerticalContentAlignment="Center" />
+            <ComboBox
+              SelectedValue="{Binding SelectedAreaValue}"
+              Grid.Column="1"
+              SelectedItem="{Binding SelectedArea}"
+              VerticalContentAlignment="Center"
+              ItemsSource="{Binding Areas}"
+              SelectedValuePath="ZipCode"
+              DisplayMemberPath="StateAbbr" />
+          </Grid>
+          <Grid
+            Height="30"
+            Margin="0 0 0 30">
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition />
+              <ColumnDefinition
+                Width="2*" />
+            </Grid.ColumnDefinitions>
+            <Label
+              Grid.Column="0"
+              Content="Measured Date"
+              VerticalContentAlignment="Center" />
+            <xceed:DateTimePicker
+              Grid.Column="1"
+              ShowButtonSpinner="False"
+              Value="{Binding MeasuredDate}" />
+          </Grid>
+          <Grid
+            Height="30"
+            Margin="0 0 0 30">
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition />
+              <ColumnDefinition
+                Width="2*" />
+            </Grid.ColumnDefinitions>
+            <Label
+              Grid.Column="0"
+              Content="Condition"
+              VerticalContentAlignment="Center" />
+            <ComboBox
+              SelectedValue="{Binding SelectedConditionValue}"
+              Grid.Column="1"
+              SelectedItem="{Binding SelectedCondition}"
+              VerticalContentAlignment="Center"
+              ItemsSource="{Binding Conditions}"
+              SelectedValuePath="Value"
+              DisplayMemberPath="DisplayValue" />
+          </Grid>
+          <Grid
+            Height="30"
+            Margin="0 0 0 30">
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition
+                Width="4*" />
+              <ColumnDefinition
+                Width="7*" />
+              <ColumnDefinition
+                Width="*" />
+            </Grid.ColumnDefinitions>
+            <Label
+              Grid.Column="0"
+              Content="Temerature"
+              VerticalContentAlignment="Center" />
+            <xceed:DecimalUpDown
+              Grid.Column="1"
+              ParsingNumberStyle="Float"
+              FormatString="F2"
+              Value="{Binding TemperatureValue}"
+              Increment=".01"
+              Maximum="100"
+              Minimum="-100" />
+            <TextBlock
+              VerticalAlignment="Center"
+              HorizontalAlignment="Center"
+              FontSize="20"
+              TextAlignment="Center"
+              Grid.Column="2"
+              Text="{Binding TemperatureUnit}" />
+          </Grid>
+          <Grid
+            Height="50">
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition
+                Width="3*" />
+              <ColumnDefinition
+                Width="*" />
+            </Grid.ColumnDefinitions>
+            <Button
+              Margin="0 0 10 0"
+              Grid.Column="0"
+              Content="Save"
+              Height="50"
+              Command="{Binding SaveCommand}" />
+            <Button
+              Margin="10 0 0 0"
+              Grid.Column="1"
+              Content="Reset"
+              Height="50"
+              Command="{Binding ResetCommand}" />
+          </Grid>
+        </StackPanel>
       </TabItem>
     </TabControl>
   </Grid>
-</Window>
+</UserControl>

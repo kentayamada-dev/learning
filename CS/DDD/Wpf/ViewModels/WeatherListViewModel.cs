@@ -1,4 +1,5 @@
-﻿using Domain.Entities;
+﻿using System;
+using Domain.Entities;
 
 namespace Wpf.ViewModels
 {
@@ -13,8 +14,11 @@ namespace Wpf.ViewModels
 
     public string ZipCode => _entity.ZipCode.DisplayValue;
     public string StateAbbr => _entity.StateAbbr.DisplayValue;
-    public string MeasuredDate => _entity.MeasuredDate.DisplayValue;
-    public string Condition => _entity.Condition.DisplayValue;
-    public string Temperature => _entity.Temperature.DisplayValue;
+    public string MeasuredDateDisplayValue => _entity.MeasuredDate.DisplayValue;
+    public DateTime MeasuredDateValue => _entity.MeasuredDate.Value;
+    public string ConditionDisplayValue => _entity.Condition.DisplayValue;
+    public string ConditionValue => _entity.Condition.Value;
+    public string TemperatureDisplayValue => _entity.Temperature.DisplayValue;
+    public float TemperatureValue => _entity.Temperature.Value;
   }
 }

@@ -2,7 +2,7 @@
   x:Class="Wpf.Views.AuthView"
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:viewmodels="clr-namespace:Wpf.ViewModels"
   xmlns:prism="http://prismlibrary.com/"
@@ -16,16 +16,16 @@
       TargetType="Window">
       <Setter
         Property="Width"
-        Value="600"/>
+        Value="600" />
       <Setter
         Property="Height"
-        Value="350"/>
+        Value="350" />
       <Setter
         Property="ResizeMode"
-        Value="NoResize"/>
+        Value="NoResize" />
       <Setter
         Property="prism:Dialog.WindowStartupLocation"
-        Value="CenterScreen"/>
+        Value="CenterScreen" />
     </Style>
   </prism:Dialog.WindowStyle>
   <StackPanel
@@ -35,46 +35,46 @@
       Height="30"
       Margin="0 0 0 30">
       <Grid.ColumnDefinitions>
-        <ColumnDefinition/>
+        <ColumnDefinition />
         <ColumnDefinition
-          Width="2*"/>
+          Width="2*" />
       </Grid.ColumnDefinitions>
       <Label
         Grid.Column="0"
         Content="Name"
-        VerticalContentAlignment="Center"/>
+        VerticalContentAlignment="Center" />
       <TextBox
         Text="{Binding Name}"
         Grid.Column="1"
-        VerticalContentAlignment="Center"/>
+        VerticalContentAlignment="Center" />
     </Grid>
     <Grid
       Height="30"
       Margin="0 0 0 30">
       <Grid.ColumnDefinitions>
-        <ColumnDefinition/>
+        <ColumnDefinition />
         <ColumnDefinition
-          Width="2*"/>
+          Width="2*" />
       </Grid.ColumnDefinitions>
       <Label
         Grid.Column="0"
         Content="Password"
-        VerticalContentAlignment="Center"/>
+        VerticalContentAlignment="Center" />
       <TextBox
         Text="{Binding Password}"
         Grid.Column="1"
-        VerticalContentAlignment="Center"/>
+        VerticalContentAlignment="Center" />
     </Grid>
     <Button
       Content="{Binding AuthModeLabel}"
       Height="50"
       Command="{Binding AuthCommand}"
-      Margin="0 0 0 10"/>
+      Margin="0 0 0 10" />
     <Button
       HorizontalAlignment="Right"
       Width="100"
       Content="{Binding ToggleAuthLabel}"
       Height="20"
-      Command="{Binding ToggleAuthCommand}"/>
+      Command="{Binding ToggleAuthCommand}" />
   </StackPanel>
 </UserControl>

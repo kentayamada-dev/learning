@@ -1,10 +1,10 @@
-﻿using System.Windows;
+﻿using System.Windows.Controls;
 
 namespace Wpf.Views
 {
-  public partial class WeatherView : Window
+  public partial class WeatherView : UserControl
   {
-    private WeatherView()
+    public WeatherView()
     {
       InitializeComponent();
     }

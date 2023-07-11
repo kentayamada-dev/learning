@@ -26,12 +26,10 @@ namespace Wpf.ViewModels
       }
     }
 
-    private ObservableCollection<AreaViewModel> _areas = new();
-    public ObservableCollection<AreaViewModel> Areas
-    {
-      get => _areas;
-      set => SetProperty(ref _areas, value);
-    }
+    private DelegateCommand? _searchCommand;
+    public DelegateCommand SearchCommand => _searchCommand ??= new DelegateCommand(Search);
+
+    public ObservableCollection<AreaViewModel> Areas { get; private set; } = new();
 
     private AreaViewModel? _selectedArea;
     public AreaViewModel? SelectedArea
@@ -60,10 +58,6 @@ namespace Wpf.ViewModels
       get => _condition;
       set => SetProperty(ref _condition, value);
     }
-
-    private DelegateCommand? _searchCommand;
-    public DelegateCommand SearchCommand =>
-_searchCommand ??= new DelegateCommand(Search);
 
     internal void Search()
     {

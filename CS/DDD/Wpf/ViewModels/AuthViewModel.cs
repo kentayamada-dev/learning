@@ -23,23 +23,6 @@ namespace Wpf.ViewModels
       _user = user;
     }
 
-    private DelegateCommand? _toggleAuthCommand;
-    public DelegateCommand ToggleAuthCommand =>
-_toggleAuthCommand ??= new DelegateCommand(ChangeAuthMode);
-
-    private DelegateCommand? _authCommand;
-    public DelegateCommand AuthCommand =>
-_authCommand ??= new DelegateCommand(Auth);
-
-    private DelegateCommand? _closeCommand;
-    public DelegateCommand CloseCommand =>
-_closeCommand ??= new DelegateCommand(Close);
-
-    private void Close()
-    {
-      RequestClose?.Invoke(new DialogResult(ButtonResult.OK));
-    }
-
     public string Title => "Auth";
     public string Password { get; set; } = "";
     public string Name { get; set; } = "";
@@ -56,6 +39,20 @@ _closeCommand ??= new DelegateCommand(Close);
     {
       get => _toggleAuthLabel;
       set => SetProperty(ref _toggleAuthLabel, value);
+    }
+
+    private DelegateCommand? _toggleAuthCommand;
+    public DelegateCommand ToggleAuthCommand => _toggleAuthCommand ??= new DelegateCommand(ChangeAuthMode);
+
+    private DelegateCommand? _authCommand;
+    public DelegateCommand AuthCommand => _authCommand ??= new DelegateCommand(Auth);
+
+    private DelegateCommand? _closeCommand;
+    public DelegateCommand CloseCommand => _closeCommand ??= new DelegateCommand(Close);
+
+    private void Close()
+    {
+      RequestClose?.Invoke(new DialogResult(ButtonResult.OK));
     }
 
     private void Auth()

@@ -15,12 +15,10 @@ namespace Wpf.ViewModels
     public string Title => "Debug";
 
     private DelegateCommand? _proceedCommand;
-    public DelegateCommand ProceedCommand =>
-_proceedCommand ??= new DelegateCommand(Proceed);
+    public DelegateCommand ProceedCommand => _proceedCommand ??= new DelegateCommand(Proceed);
 
     private DelegateCommand? _exitCommand;
-    public DelegateCommand ExitCommand =>
-_exitCommand ??= new DelegateCommand(Exit);
+    public DelegateCommand ExitCommand => _exitCommand ??= new DelegateCommand(Exit);
 
     private void Exit()
     {
