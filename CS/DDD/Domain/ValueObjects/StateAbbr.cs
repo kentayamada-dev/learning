@@ -8,9 +8,9 @@ namespace Domain.ValueObjects
   {
     public string Value { get; }
 
-    internal StateAbbr(string value)
+    internal StateAbbr(string? value)
     {
-      if (!StateAbbrRegex().IsMatch(value))
+      if (value == null || !StateAbbrRegex().IsMatch(value))
       {
         throw new CustomException("StateAbbr is invalid format", ExceptionKind.Error);
       }

@@ -1,7 +1,5 @@
 ﻿using Domain;
-using Domain.Exceptions;
 using Prism.Mvvm;
-using static Domain.Exceptions.CustomException;
 
 namespace Wpf.ViewModels
 {
@@ -9,19 +7,11 @@ namespace Wpf.ViewModels
   {
     private UserInfoViewModel()
     {
-      Domain.Entities.UserEntity? currentUser = Shared.User;
-      if (currentUser == null)
-      {
-        App.BaseExceptionProc(new CustomException($"User not authorized.", ExceptionKind.Error));
-      }
-      else
-      {
-        _id = currentUser.ID.DisplayValue;
-        _name = currentUser.Name.DisplayValue;
-        _password = currentUser.Password.DisplayValue;
-        _createdAt = currentUser.CreatedAt.DisplayValue;
-        _updatedAt = currentUser.UpdatedAt.DisplayValue;
-      }
+      ID = Shared.CurrentUser.ID.DisplayValue;
+      Name = Shared.CurrentUser.Name.DisplayValue;
+      Password = Shared.CurrentUser.Password.DisplayValue;
+      CreatedAt = Shared.CurrentUser.CreatedAt.DisplayValue;
+      UpdatedAt = Shared.CurrentUser.UpdatedAt.DisplayValue;
     }
 
     private string _id = "";

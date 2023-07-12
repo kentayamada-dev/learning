@@ -1,5 +1,7 @@
 ﻿using Domain.Entities;
+using Domain.Exceptions;
 using Microsoft.Extensions.Configuration;
+using static Domain.Exceptions.CustomException;
 
 namespace Domain
 {
@@ -21,6 +23,7 @@ namespace Domain
     public static string? FakeWeatherPath => _configuration[nameof(FakeWeatherPath)];
     public static bool IsFake => _configuration[nameof(IsFake)] == "True" && IsDebugMode;
     public static int CacheIntervalSec => 30;
-    public static UserEntity? User { get; set; } = null;
+    public static UserEntity? CreateCurrentUser { get; set; }
+    public static UserEntity CurrentUser => CreateCurrentUser ?? throw new CustomException("User not authorized.", ExceptionKind.Error);
   }
 }

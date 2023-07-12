@@ -5,6 +5,6 @@ namespace Domain.Repositories
   public interface IUserRepository
   {
     UserEntity? GetByName(string userName);
-    void Add(AuthUserEntity user);
+    void Add(string name, string password);
   }
 }

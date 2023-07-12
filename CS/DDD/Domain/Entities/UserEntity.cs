@@ -2,18 +2,21 @@
 
 namespace Domain.Entities
 {
-  public sealed class UserEntity : AuthUserEntity
+  public sealed class UserEntity
   {
-    public Any<int> ID { get; }
+    public ID ID { get; }
+    public Name Name { get; }
+    public Password Password { get; }
     public CustomDateTime CreatedAt { get; }
     public CustomDateTime UpdatedAt { get; }
 
-    public UserEntity(int id, string name, string password, DateTime createdAt, DateTime updatedAt)
-      : base(name, password)
+    public UserEntity(int? id, string? name, string? password, DateTime? createdAt, DateTime? updatedAt)
     {
       ID = new(id);
-      CreatedAt = new(createdAt);
-      UpdatedAt = new(updatedAt);
+      Name = new(name);
+      Password = new(password);
+      CreatedAt = new(createdAt, $"{CreatedAt}");
+      UpdatedAt = new(updatedAt, $"{UpdatedAt}");
     }
   }
 }

@@ -10,10 +10,10 @@ namespace Domain.Entities
     public Condition Condition { get; }
     public StateAbbr StateAbbr { get; }
 
-    public WeatherListEntity(string zipCode, DateTime measuredDate, float temperature, string condition, string stateAbbr)
+    public WeatherListEntity(string? zipCode, DateTime? measuredDate, float? temperature, string? condition, string? stateAbbr)
     {
       ZipCode = new(zipCode);
-      MeasuredDate = new(measuredDate);
+      MeasuredDate = new(measuredDate, $"{MeasuredDate}");
       Temperature = new(temperature);
       Condition = new(condition);
       StateAbbr = new(stateAbbr);

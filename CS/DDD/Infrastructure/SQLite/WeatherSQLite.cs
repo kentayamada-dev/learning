@@ -8,7 +8,7 @@ namespace Infrastructure.SQLite
 {
   internal sealed class WeatherSQLite : IWeatherRepository
   {
-    public ReadOnlyCollection<WeatherListEntity> Gets(int? userId)
+    public ReadOnlyCollection<WeatherListEntity> Gets(int userId)
     {
       string sql =
         @"SELECT Weather.zipCode, Weather.measuredDate, Weather.condition, Weather.temperature, Area.stateAbbr FROM Weather JOIN Area ON Weather.zipCode = Area.zipCode WHERE Weather.userId = @userId ORDER BY Weather.measuredDate DESC";

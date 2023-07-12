@@ -1,4 +1,7 @@
-﻿namespace Domain.ValueObjects
+﻿using Domain.Exceptions;
+using static Domain.Exceptions.CustomException;
+
+namespace Domain.ValueObjects
 {
   public sealed class CustomDateTime : BaseValueObject
   {
@@ -6,9 +9,9 @@
 
     public DateTime Value { get; }
 
-    internal CustomDateTime(DateTime value)
+    internal CustomDateTime(DateTime? value, string propName)
     {
-      Value = value;
+      Value = value ?? throw new CustomException($"{propName} is Invalid format", ExceptionKind.Error);
     }
 
     public string DisplayValue => Value.ToString(_format);

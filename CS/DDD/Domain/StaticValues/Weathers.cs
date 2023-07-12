@@ -10,14 +10,10 @@ namespace Domain.StaticValues
 
     public static void CreateWeathersCache(IWeatherRepository weather)
     {
-      UserEntity? currentUser = Shared.User;
-      if (currentUser != null)
+      lock (((ICollection)_weathers).SyncRoot)
       {
-        lock (((ICollection)_weathers).SyncRoot)
-        {
-          _weathers.Clear();
-          _weathers.AddRange(weather.GetLatestList(currentUser.ID.DisplayValue));
-        }
+        _weathers.Clear();
+        _weathers.AddRange(weather.GetLatestList(Shared.CurrentUser.ID.DisplayValue));
       }
     }
 

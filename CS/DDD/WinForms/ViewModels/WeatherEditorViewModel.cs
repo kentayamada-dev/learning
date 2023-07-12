@@ -22,7 +22,7 @@ namespace WinForms.ViewModels
       _area = area;
       MeasuredDate = GetDateTime();
       SelectedCondition = Condition.Sunny.Value;
-      TemperatureValue = 0f;
+      TemperatureValue = 0;
       SelectedZipCode = "";
       TemperatureUnit = Temperature.Unit;
 

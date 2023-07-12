@@ -60,7 +60,7 @@ namespace Wpf.ViewModels
       try
       {
         UserEntity user = _isSigin ? _user.Signin(Name, Password) : _user.Signup(Name, Password);
-        Shared.User = new(user.ID.Value, user.Name.DisplayValue, user.Password.DisplayValue, user.CreatedAt.Value, user.UpdatedAt.Value);
+        Shared.CreateCurrentUser = new(user.ID.Value, user.Name.DisplayValue, user.Password.DisplayValue, user.CreatedAt.Value, user.UpdatedAt.Value);
         RequestClose?.Invoke(new DialogResult(ButtonResult.OK));
       }
       catch (Exception Ex)

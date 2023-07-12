@@ -3,11 +3,13 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using Domain;
 using Domain.Entities;
+using Domain.Exceptions;
 using Domain.Repositories;
 using Domain.ValueObjects;
 using Infrastructure;
 using Prism.Commands;
 using Prism.Mvvm;
+using static Domain.Exceptions.CustomException;
 
 namespace Wpf.ViewModels
 {
@@ -28,7 +30,6 @@ namespace Wpf.ViewModels
       _weatherEditor = weatherEditor;
       _weather = weather;
       _area = area;
-
       foreach (AreaEntity areaData in _area.Gets())
       {
         Areas.Add(new(areaData));
@@ -39,7 +40,7 @@ namespace Wpf.ViewModels
         Conditions.Add(new(conditionData));
       }
 
-      foreach (WeatherListEntity entity in _weather.Gets(Shared.User?.ID.Value))
+      foreach (WeatherListEntity entity in _weather.Gets(Shared.CurrentUser.ID.Value))
       {
         Weathers.Add(new(entity));
       }
@@ -87,23 +88,33 @@ namespace Wpf.ViewModels
 
     internal void Save()
     {
-      if (SelectedArea != null && SelectedCondition != null)
+      if (SelectedArea == null)
+      {
+        App.BaseExceptionProc(new CustomException("Please select Area.", ExceptionKind.Error));
+      }
+      else if (SelectedCondition == null)
+      {
+        App.BaseExceptionProc(new CustomException("Please select Condition.", ExceptionKind.Error));
+      }
+      else
       {
         try
         {
-          _weatherEditor.Edit(SelectedArea.ZipCode, MeasuredDate, TemperatureValue, SelectedCondition.Value);
-          WeatherListEntity weather = new(SelectedArea.ZipCode, MeasuredDate, TemperatureValue, SelectedCondition.Value, SelectedArea.StateAbbr);
-          WeatherListViewModel? tempList = Weathers.FirstOrDefault(
-            weather => weather.ZipCode == SelectedArea.ZipCode && weather.MeasuredDateValue == MeasuredDate
+          _weatherEditor.Edit(SelectedArea?.ZipCode, MeasuredDate, TemperatureValue, SelectedCondition?.Value);
+          WeatherListEntity newWeather = new(SelectedArea?.ZipCode, MeasuredDate, TemperatureValue, SelectedCondition?.Value, SelectedArea?.StateAbbr);
+          WeatherListViewModel? oldWeather = Weathers.FirstOrDefault(
+            weather => weather.ZipCode == SelectedArea?.ZipCode && weather.MeasuredDateValue == MeasuredDate
           );
-          if (tempList == null)
+          if (oldWeather == null)
           {
-            Weathers.Insert(0, new(weather));
+            Weathers.Insert(0, new(newWeather));
+            throw new CustomException("Weather Added.", ExceptionKind.Information);
           }
           else
           {
-            int index = Weathers.IndexOf(tempList);
-            Weathers[index] = new(weather);
+            int index = Weathers.IndexOf(oldWeather);
+            Weathers[index] = new(newWeather);
+            throw new CustomException("Weather Updated.", ExceptionKind.Information);
           }
         }
         catch (Exception Ex)

@@ -14,9 +14,9 @@ namespace Domain.ValueObjects
 
     public string Value { get; }
 
-    internal Condition(string value)
+    internal Condition(string? value)
     {
-      if (!_conditions.Contains(value))
+      if (value == null || !_conditions.Contains(value))
       {
         throw new CustomException(
           $"Condition should be one of {nameof(Sunny)}, {nameof(Cloudy)}, {nameof(Rainy)} or {nameof(Unknown)}.",

@@ -1,5 +1,6 @@
 ﻿using Domain.Entities;
 using Domain.Exceptions;
+using Domain.ValueObjects;
 using Microsoft.Data.Sqlite;
 using static Domain.Exceptions.CustomException;
 
@@ -16,10 +17,10 @@ namespace Domain.Repositories
 
     public UserEntity Signin(string name, string password)
     {
-      AuthUserEntity tempUser = new(name, password);
-      UserEntity? user = _user.GetByName(tempUser.Name.DisplayValue);
+      ValidateAuthInput(name, password);
+      UserEntity? user = _user.GetByName(name);
 
-      return user == null || user.Password.Value != tempUser.Password.DisplayValue
+      return user == null || user.Password.Value != password
         ? throw new CustomException("Incorrect Name or Password.", ExceptionKind.Error)
         : user;
     }
@@ -28,7 +29,8 @@ namespace Domain.Repositories
     {
       try
       {
-        _user.Add(new(name, password));
+        ValidateAuthInput(name, password);
+        _user.Add(name, password);
       }
       catch (SqliteException exception)
       {
@@ -37,6 +39,12 @@ namespace Domain.Repositories
 
       return _user.GetByName(name) ?? throw new CustomException("User Not Found.", ExceptionKind.Error);
       ;
+    }
+
+    private static void ValidateAuthInput(string name, string password)
+    {
+      _ = new Name(name);
+      _ = new Password(password);
     }
   }
 }

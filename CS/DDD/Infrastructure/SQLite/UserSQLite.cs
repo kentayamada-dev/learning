@@ -25,11 +25,11 @@ namespace Infrastructure.SQLite
       );
     }
 
-    public void Add(AuthUserEntity user)
+    public void Add(string name, string password)
     {
       string sql = @"INSERT INTO User(name, password) VALUES(@name, @password)";
 
-      List<SqliteParameter> args = new() { new("@name", user.Name.DisplayValue), new("@password", user.Password.DisplayValue), };
+      List<SqliteParameter> args = new() { new("@name", name), new("@password", password), };
       SQLiteCore.Execute(sql, args.ToArray());
     }
   }

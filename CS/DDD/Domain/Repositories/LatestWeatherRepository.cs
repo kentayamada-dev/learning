@@ -13,8 +13,7 @@ namespace Domain.Repositories
 
     public WeatherEntity? Search(string zipCode)
     {
-      UserEntity? currentUser = Shared.User;
-      return currentUser != null ? (_weather?.GetLatest(currentUser.ID.DisplayValue, zipCode)) : null;
+      return _weather.GetLatest(Shared.CurrentUser.ID.DisplayValue, zipCode);
     }
   }
 }

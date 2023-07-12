@@ -11,11 +11,15 @@ namespace WinForms.Views
     private protected BaseView()
     {
       InitializeComponent();
-      if (Shared.User != null)
+      NameLabel.Visible = true;
+      NameValueLabel.Visible = true;
+      try
       {
-        NameLabel.Visible = true;
-        NameValueLabel.Visible = true;
-        NameValueLabel.Text = Shared.User.Name.DisplayValue;
+        NameValueLabel.Text = Shared.CurrentUser.Name.DisplayValue;
+      }
+      catch (Exception)
+      {
+        NameValueLabel.Text = "";
       }
     }
 

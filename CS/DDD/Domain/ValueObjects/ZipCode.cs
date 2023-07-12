@@ -8,9 +8,9 @@ namespace Domain.ValueObjects
   {
     public string Value { get; }
 
-    internal ZipCode(string value)
+    internal ZipCode(string? value)
     {
-      if (!ValidZipCodeRegex().IsMatch(value))
+      if (value == null || !ValidZipCodeRegex().IsMatch(value))
       {
         throw new CustomException("ZipCode is invalid format", ExceptionKind.Error);
       }

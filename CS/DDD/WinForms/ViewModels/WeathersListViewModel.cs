@@ -18,7 +18,7 @@ namespace WinForms.ViewModels
     {
       _weather = weather;
 
-      foreach (WeatherListEntity entity in _weather.Gets(Shared.User?.ID.Value))
+      foreach (WeatherListEntity entity in _weather.Gets(Shared.CurrentUser.ID.Value))
       {
         Weathers.Add(new(entity));
       }

@@ -9,10 +9,10 @@ namespace Domain.Entities
     public Temperature Temperature { get; }
     public Condition Condition { get; }
 
-    public WeatherEntity(string zipCode, DateTime measuredDate, float temperature, string condition)
+    public WeatherEntity(string? zipCode, DateTime? measuredDate, float? temperature, string? condition)
     {
       ZipCode = new(zipCode);
-      MeasuredDate = new(measuredDate);
+      MeasuredDate = new(measuredDate, $"{MeasuredDate}");
       Temperature = new(temperature);
       Condition = new(condition);
     }

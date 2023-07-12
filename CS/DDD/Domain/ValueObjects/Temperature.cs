@@ -1,4 +1,6 @@
-﻿using Domain.Modules.Helpers;
+﻿using Domain.Exceptions;
+using Domain.Modules.Helpers;
+using static Domain.Exceptions.CustomException;
 
 namespace Domain.ValueObjects
 {
@@ -9,9 +11,9 @@ namespace Domain.ValueObjects
 
     public float Value { get; }
 
-    internal Temperature(float value)
+    internal Temperature(float? value)
     {
-      Value = value;
+      Value = value ?? throw new CustomException("Temperature is Invalid format", ExceptionKind.Error);
     }
 
     public string DisplayValue => Value.ToRoundedFloatString(_decimalPoint) + Unit;

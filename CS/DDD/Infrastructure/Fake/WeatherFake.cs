@@ -9,7 +9,7 @@ namespace Infrastructure.Fake
 {
   internal sealed class WeatherFake : IWeatherRepository
   {
-    public ReadOnlyCollection<WeatherListEntity> Gets(int? userId)
+    public ReadOnlyCollection<WeatherListEntity> Gets(int userId)
     {
       string fakeWeathersPath =
         Shared.FakeWeathersPath

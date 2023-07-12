@@ -1,6 +1,4 @@
-﻿using Domain.Entities;
-
-namespace Domain.Repositories
+﻿namespace Domain.Repositories
 {
   public sealed class WeatherEditorRepository : IWeatherEditorRepository
   {
@@ -11,13 +9,9 @@ namespace Domain.Repositories
       _weather = weather;
     }
 
-    public void Edit(string zipCode, DateTime measuredDate, float temperature, string condition)
+    public void Edit(string? zipCode, DateTime? measuredDate, float? temperature, string? condition)
     {
-      UserEntity? currentUser = Shared.User;
-      if (currentUser != null)
-      {
-        _weather.Edit(new(zipCode, measuredDate, temperature, condition), currentUser.ID.DisplayValue);
-      }
+      _weather.Edit(new(zipCode, measuredDate, temperature, condition), Shared.CurrentUser.ID.DisplayValue);
     }
   }
 }
