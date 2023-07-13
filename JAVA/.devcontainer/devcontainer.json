@@ -1,19 +1,9 @@
 {
 	"name": "${containerWorkspaceFolderBasename}",
-	"build": {
-		"dockerfile": "Dockerfile",
-		"args": {
-			"WORKSPACE_PATH": "${containerWorkspaceFolder}"
-		}
-	},
-	"customizations": {
-		"vscode": {
-			"extensions": [
-				"Fooxly.themeswitch",
-				"albert.TabOut",
-				"richie5um2.vscode-sort-json",
-				"onatm.open-in-new-window"
-			]
-		}
+	"dockerComposeFile": "docker-compose.yml",
+	"service": "app",
+	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+	"features": {
+		"ghcr.io/devcontainers-contrib/features/springboot-sdkman:2": {}
 	}
 }
