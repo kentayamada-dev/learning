@@ -1,9 +1,6 @@
 services:
   app:
-    build:
-      context: .
-      args:
-        WORKSPACE_PATH: /workspaces/JAVA
+    build: .
     environment:
         POSTGRES_PASSWORD: postgres
         POSTGRES_USER: postgres

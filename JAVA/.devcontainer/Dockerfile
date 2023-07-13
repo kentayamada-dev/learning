@@ -3,7 +3,7 @@ FROM mcr.microsoft.com/devcontainers/java:1-17-bookworm
 ENV TZ=Asia/Tokyo \
     SHELL=/bin/zsh
 
-ARG WORKSPACE_PATH
+ARG WORKSPACE_PATH="/workspaces/JAVA"
 ARG HOME="/home/vscode"
 ARG CLONE="git clone --depth 1 --"
 ARG APT="apt-get"
