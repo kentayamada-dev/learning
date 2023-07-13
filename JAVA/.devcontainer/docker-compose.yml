@@ -1,10 +1,7 @@
-name: java-app
 services:
   app:
-    container_name: app
     build:
       context: .
-      dockerfile: Dockerfile
       args:
         WORKSPACE_PATH: /workspaces/JAVA
     environment:
@@ -18,7 +15,6 @@ services:
     network_mode: service:db
 
   db:
-    container_name: db
     image: postgres:latest
     restart: unless-stopped
     volumes:
