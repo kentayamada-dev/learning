@@ -1,17 +1,28 @@
-FROM mcr.microsoft.com/devcontainers/java:1-17-bookworm
+FROM openjdk:22-slim-bookworm
 
 ENV TZ=Asia/Tokyo \
     SHELL=/bin/zsh
 
+ARG USERNAME=dev
+ARG USER_UID=1000
+ARG USER_GID=$USER_UID
+
+RUN groupadd --gid $USER_GID $USERNAME \
+    && useradd --uid $USER_UID --gid $USER_GID -m $USERNAME \
+    && apt-get update \
+    && apt-get install -y sudo zsh git \
+    && echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME \
+    && chmod 0440 /etc/sudoers.d/$USERNAME
+
 ARG WORKSPACE_PATH="/workspaces/JAVA"
-ARG HOME="/home/vscode"
+ARG HOME="/home/${USERNAME}"
 ARG CLONE="git clone --depth 1 --"
 ARG APT="apt-get"
 ARG UPDATE="${APT} update"
 ARG INSTALL="${APT} -y install --no-install-recommends"
 
-RUN rm $HOME/.zshrc && ln -s $WORKSPACE_PATH/.devcontainer/.zshrc $HOME/.zshrc \
+RUN rm -f $HOME/.zshrc && ln -s $WORKSPACE_PATH/.devcontainer/.zshrc $HOME/.zshrc \
   && $CLONE https://github.com/z-shell/F-Sy-H $HOME/fsh && $CLONE https://github.com/olets/zsh-abbr $HOME/abbr \
   && $UPDATE && $INSTALL exa fd-find fzf bat
 
-RUN su vscode -c "umask 0002 && . /usr/local/sdkman/bin/sdkman-init.sh && sdk install maven 3.9.3"
+USER $USERNAME

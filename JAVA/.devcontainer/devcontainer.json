@@ -2,8 +2,5 @@
 	"name": "${containerWorkspaceFolderBasename}",
 	"dockerComposeFile": "docker-compose.yml",
 	"service": "app",
-	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
-	"features": {
-		"ghcr.io/devcontainers-contrib/features/springboot-sdkman:2": {}
-	}
+	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}"
 }
