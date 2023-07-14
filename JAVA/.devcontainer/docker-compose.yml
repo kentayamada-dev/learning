@@ -1,6 +1,8 @@
 services:
   app:
-    build: .
+    build:
+      args:
+        WORKSPACE_PATH: $WORKSPACE_FOLDER
     environment:
         POSTGRES_PASSWORD: postgres
         POSTGRES_USER: postgres
