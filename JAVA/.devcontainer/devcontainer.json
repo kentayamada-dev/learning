@@ -3,6 +3,6 @@
 	"dockerComposeFile": "docker-compose.yml",
 	"service": "app",
 	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
-	"initializeCommand": "echo WORKSPACE_FOLDER=/workspaces/${localWorkspaceFolderBasename} > .devcontainer/.env",
+	"initializeCommand": "echo \"WORKSPACE_FOLDER=/workspaces/${localWorkspaceFolderBasename}\" > .devcontainer/.env",
 	"postCreateCommand": "rm -f .devcontainer/.env"
 }
